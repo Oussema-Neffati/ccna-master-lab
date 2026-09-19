@@ -70,50 +70,9 @@ updated: 2026-09-18
 
 ## 3. Physical Topology
 
-```mermaid
-graph TD
-    ISP[ISP<br/>2911]
-    R1[R1<br/>2911]
-    CSW1[CSW1<br/>3560]
-    CSW2[CSW2<br/>3560]
-    DSWA1[DSW-A1]
-    DSWA2[DSW-A2]
-    DSWB1[DSW-B1]
-    DSWB2[DSW-B2]
-    ASWA1[ASW-A1]
-    ASWA2[ASW-A2]
-    ASWB1[ASW-B1]
-    ASWB2[ASW-B2]
-    SRV1[SRV1]
-    PCA1[PC-A1]
-    PCA2[PC-A2]
-    PCB1[PC-B1]
-    PCB2[PC-B2]
 
-    ISP --- R1
-    R1 --- CSW1
-    R1 --- CSW2
-    CSW1 === CSW2
-    CSW1 --- DSWA1
-    CSW1 --- DSWA2
-    CSW2 --- DSWB1
-    CSW2 --- DSWB2
-    DSWA1 --- DSWA2
-    DSWB1 --- DSWB2
-    DSWA1 --- ASWA1
-    DSWA2 --- ASWA1
-    DSWA1 --- ASWA2
-    DSWA2 --- ASWA2
-    DSWB1 --- ASWB1
-    DSWB2 --- ASWB1
-    DSWB1 --- ASWB2
-    DSWB2 --- ASWB2
-    DSWA1 --- SRV1
-    ASWA1 --- PCA1
-    ASWA2 --- PCA2
-    ASWB1 --- PCB1
-    ASWB2 --- PCB2
-```
+![Physical Topology](../04-Assets/Physical%20Topology.png)
+
 
 ---
 
