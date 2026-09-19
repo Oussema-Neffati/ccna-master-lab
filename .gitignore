@@ -1,0 +1,19 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# Obsidian
+.obsidian/
+
+# Python (for Phase 10)
+__pycache__/
+*.pyc
+venv/
+.env
+
+# Packet Tracer
+*.pkt.bak
+*.pkt~
