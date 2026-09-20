@@ -7,10 +7,10 @@ enterprise with a dual-homed core, edge NAT, and full Layer 2/3 redundancy.
 
 | Phase | Topic | Status |
 |-------|-------|--------|
-| [1](01-Phases/Phase-1-Physical-Topology.md) | Physical Topology & Cabling | ✅ Complete |
-| [2](01-Phases/Phase-2-VLANs-and-Trunks.md) | VLANs & 802.1Q Trunks | ✅ Complete |
-| 3 | Inter-VLAN Routing (SVI + HSRP) | ✅ Complete |
-| 4 | Rapid PVST+ Tuning | 🚧 In progress |
+| 1 | **[Phase 1 — Physical Topology & Cabling](Phase-1-Physical-Topology.md)** | ✅ Complete |
+| 2 | **[Phase 2 — VLANs & 802.1Q Trunks](Phase-2-VLANs-and-Trunks.md)** | ✅ Complete |
+| 3 | **[Phase 3 — Inter-VLAN Routing (SVIs + HSRP)](Phase-3-Inter-VLAN-Routing.md)** | ✅ Complete |
+| 4 | **[Phase 4 — Rapid PVST+ Tuning](Phase-4-Rapid-PVST-Tuning.md)** | 🚧 In progress |
 | 5 | EtherChannel (LACP) | ⏳ Pending |
 | 6 | OSPFv2 Single Area | ⏳ Pending |
 | 7 | ACLs (Standard & Extended) | ⏳ Pending |
