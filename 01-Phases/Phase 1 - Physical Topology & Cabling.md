@@ -1,5 +1,5 @@
 ---
-title: "Phase 1 — Physical Topology & Cabling"
+title: "Phase-1-Physical-Topology-&-Cabling"
 project: CCNA Master Lab — Acme Corp Two-Office Enterprise
 phase: 1
 status: complete
