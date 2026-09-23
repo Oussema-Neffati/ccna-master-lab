@@ -12,7 +12,7 @@ enterprise with a dual-homed core, edge NAT, and full Layer 2/3 redundancy.
 | 3 | **[Phase 3 — Inter-VLAN Routing (SVIs + HSRP)](Phase-3-Inter-VLAN-Routing.md)** | ✅ Complete |
 | 4 | **[Phase 4 — Rapid PVST+ Tuning](Phase-4-Rapid-PVST-Tuning.md)** | ✅ Complete |
 | 5 | **[Phase 5 — EtherChannel (LACP)](Phase-5-EtherChannel.md)** | ✅ Complete |
-| 6 | OSPFv2 Single Area | ✅ Complete |
+| 6 | **[Phase 6 — OSPFv2 Single Area](Phase-6-OSPFv2.md)** | ✅ Complete |
 | 7 | ACLs (Standard & Extended) | 🚧 In progress |
 | 8 | Network Security (Port-Sec, DHCP Snoop, DAI) | ⏳ Pending |
 | 9 | Services (DHCP, NAT, NTP, SNMP, SSH) | ⏳ Pending |
