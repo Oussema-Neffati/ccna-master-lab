@@ -7,13 +7,13 @@ enterprise with a dual-homed core, edge NAT, and full Layer 2/3 redundancy.
 
 | Phase | Topic | Status |
 |-------|-------|--------|
-| 1 | **[Phase 1 — Physical Topology & Cabling](Phase-1-Physical-Topology.md)** | ✅ Complete |
-| 2 | **[Phase 2 — VLANs & 802.1Q Trunks](Phase-2-VLANs-and-Trunks.md)** | ✅ Complete |
-| 3 | **[Phase 3 — Inter-VLAN Routing (SVIs + HSRP)](Phase-3-Inter-VLAN-Routing.md)** | ✅ Complete |
-| 4 | **[Phase 4 — Rapid PVST+ Tuning](Phase-4-Rapid-PVST-Tuning.md)** | ✅ Complete |
-| 5 | **[Phase 5 — EtherChannel (LACP)](Phase-5-EtherChannel.md)** | ✅ Complete |
-| 6 | **[Phase 6 — OSPFv2 Single Area](Phase-6-OSPFv2.md)** | ✅ Complete |
-| 7 | **[Phase 7 — ACLs (Standard & Extended)](Phase-7-ACLs.md)** | ✅ Complete |
+| 1 | **[Phase 1 — Physical Topology & Cabling](01-Phases/Phase-1-Physical-Topology.md)** | ✅ Complete |
+| 2 | **[Phase 2 — VLANs & 802.1Q Trunks](01-Phases/Phase-2-VLANs-and-Trunks.md)** | ✅ Complete |
+| 3 | **[Phase 3 — Inter-VLAN Routing (SVIs + HSRP)](01-Phases/Phase-3-Inter-VLAN-Routing.md)** | ✅ Complete |
+| 4 | **[Phase 4 — Rapid PVST+ Tuning](01-Phases/Phase-4-Rapid-PVST-Tuning.md)** | ✅ Complete |
+| 5 | **[Phase 5 — EtherChannel (LACP)](01-Phases/Phase-5-EtherChannel.md)** | ✅ Complete |
+| 6 | **[Phase 6 — OSPFv2 Single Area](01-Phases/Phase-6-OSPFv2.md)** | ✅ Complete |
+| 7 | **[Phase 7 — ACLs (Standard & Extended)](01-Phases/Phase-7-ACLs.md)** | ✅ Complete |
 | 8 | Network Security (Port-Sec, DHCP Snoop, DAI) | 🚧 In progress |
 | 9 | Services (DHCP, NAT, NTP, SNMP, SSH) | ⏳ Pending |
 | 10 | Automation (RESTCONF + Python) | ⏳ Pending |
