@@ -9,7 +9,6 @@ tags:
   - vlan
   - trunking
   - 802.1q
-  - packet-tracer
 created: 2026-09-18
 updated: 2026-09-18
 ---
