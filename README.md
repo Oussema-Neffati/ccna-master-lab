@@ -14,8 +14,8 @@ enterprise with a dual-homed core, edge NAT, and full Layer 2/3 redundancy.
 | 5 | **[Phase 5 — EtherChannel (LACP)](01-Phases/Phase-5-EtherChannel.md)** | ✅ Complete |
 | 6 | **[Phase 6 — OSPFv2 Single Area](01-Phases/Phase-6-OSPFv2.md)** | ✅ Complete |
 | 7 | **[Phase 7 — ACLs (Standard & Extended)](01-Phases/Phase-7-ACLs.md)** | ✅ Complete |
-| 8 | **[Phase 9 — Services (NAT, NTP, SNMP, SSH)](/01-Phases/Phase-9-Services.md)** | ✅ Complete |
-| 9 | Services (DHCP, NAT, NTP, SNMP, SSH) | 🚧 In progress |
+| 8 | **[Phase 8 — Network Security (Port Security, DHCP Snooping, DAI)](01-Phases/Phase-8-Network-Security.md)** | ✅ Complete |
+| 9 | **[Phase 9 — Services (NAT, NTP, SNMP, SSH)](01-Phases/Phase-9-Services.md)** | 🚧 In progress |
 | 10 | Automation (RESTCONF + Python) | ⏳ Pending |
 | 11 | Troubleshooting Scenarios | ⏳ Pending |
 
