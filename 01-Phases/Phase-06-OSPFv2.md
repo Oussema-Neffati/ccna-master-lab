@@ -1,15 +1,18 @@
 # Phase 6 — OSPFv2 Single Area
 
-> [!NOTE]\n> **Prerequisites & Navigation**
+> [!NOTE]
+> **Prerequisites & Navigation**
 > **Previous:** [Phase 5 — EtherChannel](Phase-05-EtherChannel.md) · **Next:** [Phase 7 — ACLs](Phase-07-ACLs.md)
 > Master addressing plan: [MASTER-ADDRESSING.md](../MASTER-ADDRESSING.md)
 
-> > [!TIP]\n> **Phase Objective**
+> [!TIP]
+> **Phase Objective**
 > Route between the two offices and toward the Internet using OSPFv2 single-area.
 > This is where PC-A1 finally reaches PC-B1, and where R1 originates a default
 > route into OSPF.
 
-> [!IMPORTANT]\n> **<text>** Architectural change from Phase 2
+> [!IMPORTANT]
+> Architectural change from Phase 2
 > The CSW↔DSW uplinks that were Layer 2 trunks in Phase 2 become **routed ports**
 > in this phase. The old `switchport mode trunk` configuration on those four
 > ports is replaced by `no switchport` + IP addressing.
@@ -85,7 +88,8 @@ end
 write memory
 ```
 
-> [!NOTE] ISP default route
+> [!NOTE]
+> **ISP default route**
 > The ISP has a static default route pointing back to R1. This means that once NAT
 > is configured on R1 (Phase 9), inside hosts **can** reach `8.8.8.8` — and
 > interestingly, may also reach `8.8.8.8` **before** Phase 9 if R1's own IP is
@@ -190,7 +194,8 @@ router ospf 1
  exit
 ```
 
-> [!WARNING]\n> **<text>** Packet Tracer limitation — `no passive-interface Port-channel1`
+> [!WARNING]
+> Packet Tracer limitation — `no passive-interface Port-channel1`
 > PT rejects `no passive-interface Port-channel1` even though the interface exists
 > and is up. With `passive-interface default` still active, Port-channel1 stays
 > passive and the CSW1↔CSW2 adjacency never forms — all inter-core traffic then
@@ -276,7 +281,8 @@ router ospf 1
  exit
 ```
 
-> [!NOTE] DSWs keep `passive-interface default`
+> [!NOTE]
+> **DSWs keep `passive-interface default`**
 > DSW uplinks (Gi0/1) are physical interfaces, not Port-channels, so
 > `no passive-interface GigabitEthernet0/1` works fine. Their SVIs remain
 > passive automatically — advertised but no OSPF neighbor on those VLANs.
@@ -344,7 +350,8 @@ path only:
 O  10.20.10.0/24 [110/3] via 10.0.0.6, ... Port-channel1
 ```
 
-> [!IMPORTANT]\n> **<text>** OSPF installs only the best path
+> [!IMPORTANT]
+> OSPF installs only the best path
 > Earlier drafts of this document showed two entries per Office B subnet (cost 3
 > via Port-channel1 AND cost 4 via R1). That was incorrect. **OSPF installs only
 > the best-cost path** into the routing table. The lower-cost path (via CSW2 over
@@ -383,7 +390,8 @@ Observed result at this phase: **partially working / unreliable.**
 - A ping to `8.8.8.8` (ISP loopback) may or may not succeed depending on how PT
   handles the return path. On real hardware it would typically fail without NAT.
 
-> [!NOTE] Full Internet reachability is completed in Phase 9
+> [!NOTE]
+> **Full Internet reachability is completed in Phase 9**
 > Phase 9 adds PAT on R1, at which point every inside host can reach the Internet
 > reliably. Any partial success at this phase is due to PT's simplified ISP
 > emulation, not a real routing behavior.
@@ -422,7 +430,8 @@ traffic hairpins through R1.
 the default state, only the non-transit interfaces (Loopback0, any SVIs) need
 to be explicitly marked passive.
 
-> [!CAUTION]\n> **<text>** Watch out for inverted logic
+> [!CAUTION]
+> Watch out for inverted logic
 > A tempting but **wrong** workaround is to keep `passive-interface default` and
 > mark the transit interfaces passive by mistake. That disables **all** OSPF
 > adjacencies on that switch. The correct approach is: don't use

@@ -1,21 +1,25 @@
 # Phase 11 — Troubleshooting Scenarios + Final Review
 
-> [!NOTE]\n> **Prerequisites & Navigation**
+> [!NOTE]
+> **Prerequisites & Navigation**
 > **Previous:** [Phase 10 — Automation](Phase-10-Automation.md) · **Next:** (end of project)
 > Master addressing plan: [MASTER-ADDRESSING.md](../MASTER-ADDRESSING.md) · Final device summary: [FINAL-DEVICE-SUMMARY.md](../FINAL-DEVICE-SUMMARY.md)
 
-> > [!TIP]\n> **Phase Objective**
+> [!TIP]
+> **Phase Objective**
 > Prove diagnostic skill — inject misconfigurations, observe symptoms, diagnose,
 > fix, verify. This is the exam-critical skill: not "can you configure it" but
 > "can you find what's broken."
 
-> [!WARNING]\n> **<text>** Save a working snapshot first
+> [!WARNING]
+> Save a working snapshot first
 > ```cisco
 > write memory
 > ```
 > On every device. PT → File → Save As → `acme-corp-lab-WORKING.pkt`.
 
-> [!TIP] How to use this phase
+> [!TIP]
+> **How to use this phase**
 > Inject **one scenario at a time**. Diagnose, fix, verify, then move on.
 
 ---
@@ -85,7 +89,8 @@ write memory
 
 PC-A1's traffic goes to the HSRP VIP (10.10.10.1) → DSW-A1 (Active). DSW-A1 has no OSPF route to Office B → traffic dropped. DSW-A1 stays Active because its Vlan10 SVI is still up. DSW-A2 remains Standby and never receives the traffic.
 
-> [!IMPORTANT]\n> **<text>** HSRP only fails over when a tracked interface goes DOWN
+> [!IMPORTANT]
+> HSRP only fails over when a tracked interface goes DOWN
 > Routing failures do not trigger HSRP failover unless explicitly tracked. Use
 > **HSRP object tracking**:
 >
@@ -316,7 +321,8 @@ exit
 
 If Root Guard was missing, add it now:
 
-> [!IMPORTANT]\n> **<text>** Root Guard placement — on the distribution side
+> [!IMPORTANT]
+> Root Guard placement — on the distribution side
 > Root Guard is applied on the **distribution switches' ports facing the access
 > layer** — the ports that should never become the STP root port:
 >
@@ -330,7 +336,8 @@ If Root Guard was missing, add it now:
 > If a rogue switch with a lower bridge ID appears downstream, the DSW's port
 > enters **root-inconsistent** state.
 
-> [!WARNING]\n> **<text>** Packet Tracer may not model Root Guard faithfully
+> [!WARNING]
+> Packet Tracer may not model Root Guard faithfully
 > PT often accepts the command but doesn't enforce the root-inconsistent state.
 > On real IOS it works as described. Verify with `show spanning-tree inconsistentports`.
 
@@ -348,7 +355,8 @@ If Root Guard was missing, add it now:
 - [x] `show interfaces trunk` on DSW-A1 shows Po1, Gi0/2, Fa0/1 (native VLAN 1000)
 - [x] `show spanning-tree vlan 10` on DSW-A1 → `This bridge is the root`
 
-> [!NOTE] `show interfaces trunk` returns empty on CSW1/CSW2
+> [!NOTE]
+> **`show interfaces trunk` returns empty on CSW1/CSW2**
 > All CSW1/CSW2 uplinks are **routed ports** (Phase 6). No trunks exist on the core switches.
 
 ### Layer 3

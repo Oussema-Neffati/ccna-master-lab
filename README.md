@@ -25,7 +25,9 @@ The lab is split into 11 phases that build on each other — follow them in orde
 ## Topology
 
 
-![Topology](02-Diagrams/Physical-topology-v2.png)---
+![Topology](02-Diagrams/Physical-topology-v2.png)
+
+---
 
 ## Phases
 
@@ -105,7 +107,7 @@ This lab focuses on the **core switching, routing, security, and IP-services dom
 
 | Item | Version |
 |------|---------|
-| Cisco Packet Tracer | **8.2.x** (replace with your version) |
+| Cisco Packet Tracer | **9.0.1** |
 | Python (for reference scripts) | 3.9+ |
 | Lab credentials | `<LAB_PASSWORD>` (see Phase 9) |
 

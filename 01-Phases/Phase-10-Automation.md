@@ -1,15 +1,18 @@
 # Phase 10 — Basic Automation & Programmability
 
-> [!NOTE]\n> **Prerequisites & Navigation**
+> [!NOTE]
+> **Prerequisites & Navigation**
 > **Previous:** [Phase 9 — Services](Phase-09-Services.md) · **Next:** [Phase 11 — Troubleshooting](Phase-11-Troubleshooting.md)
 > Master addressing plan: [MASTER-ADDRESSING.md](../MASTER-ADDRESSING.md)
 
-> > [!TIP]\n> **Phase Objective**
+> [!TIP]
+> **Phase Objective**
 > Understand and document the automation concepts tested on the CCNA 200-301 exam:
 > REST APIs, RESTCONF, NETCONF, HTTP verbs, data formats, Python scripting,
 > configuration management tools, and SDN / Cisco Catalyst Center.
 
-> [!WARNING]\n> **<text>** Packet Tracer has no automation support
+> [!WARNING]
+> Packet Tracer has no automation support
 > PT rejects `ip http server`, `ip http secure-server`, `ip http authentication local`,
 > and `restconf`. This phase is **documented, not implemented**.
 
@@ -73,7 +76,9 @@
 | Data model | YANG | YANG |
 | Use case | Modern APIs | Traditional automation |
 
-> [!TIP] CCNA exam quick-reference
+> [!TIP]
+> **CCNA exam quick-reference
+**
 > - **JSON**, **HTTPS**, **REST** → RESTCONF
 > - **SSH port 830**, **XML only** → NETCONF
 
@@ -119,7 +124,8 @@
 | **Chef** | Ruby DSL | ✅ Agent | Pull |
 | **SaltStack** | YAML | Optional | Push |
 
-> [!IMPORTANT]\n> **<text>** Ansible is agentless
+> [!IMPORTANT]
+> Ansible is agentless
 > Ansible uses SSH only. Puppet and Chef require an agent on each device.
 
 ---
@@ -135,7 +141,8 @@ restconf
 
 **PT behavior:** All commands rejected.
 
-> [!WARNING]\n> **<text>** Hard PT limitation
+> [!WARNING]
+> Hard PT limitation
 > Unlike other PT quirks, automation is **completely unsupported**. There is no workaround in PT.
 
 ### On real IOS-XE
@@ -200,20 +207,20 @@ print(json.dumps(response.json(), indent=2))
 
 ## 7. Ansible Playbook (Reference)
 
-See [`scripts/ansible/`](../scripts/ansible) for the inventory and playbook.
+Reference inventory and playbook are inlined below.
 
 Ansible is **agentless** — uses SSH to push config from YAML playbooks.
 
-Run it:
-```bash
-ansible-playbook -i scripts/ansible/hosts.ini scripts/ansible/configure_ospf.yml
+ansible-playbook -i hosts.ini configure_ospf.yml
 ```
 
 ---
 
 ## 8. SDN & Cisco Catalyst Center
 
-> [!NOTE] Renamed product
+> [!NOTE]
+> **Renamed product
+**
 > Cisco DNA Center is now called **Cisco Catalyst Center** (rebranded 2024).
 > Legacy documentation may use "DNA Center".
 

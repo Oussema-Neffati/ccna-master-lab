@@ -1,15 +1,18 @@
 # Phase 7 — Access Control Lists (Standard & Extended)
 
-> [!NOTE]\n> **Prerequisites & Navigation**
+> [!NOTE]
+> **Prerequisites & Navigation**
 > **Previous:** [Phase 6 — OSPFv2](Phase-06-OSPFv2.md) · **Next:** [Phase 8 — Network Security](Phase-08-Network-Security.md)
 > Master addressing plan: [MASTER-ADDRESSING.md](../MASTER-ADDRESSING.md)
 
-> > [!TIP]\n> **Phase Objective**
+> [!TIP]
+> **Phase Objective**
 > Filter traffic at two layers:
 > 1. **Standard ACL** — restrict device management (SSH/VTY) to management subnets.
 > 2. **Extended ACL** — block Office A PCs from reaching Office B servers, except HTTP/HTTPS.
 
-> [!IMPORTANT]\n> **<text>** Scope — which devices get which ACL
+> [!IMPORTANT]
+> Scope — which devices get which ACL
 > - **Standard ACL 10 (VTY restriction):** R1, CSW1, CSW2, DSW-A1, DSW-A2, DSW-B1, DSW-B2 (7 devices).
 >   ASWs are excluded — they are Layer 2 only, no VTY exposure outside their own VLAN 99 management segment.
 > - **Extended ACL `BLOCK_A_TO_B_SERVERS`:** DSW-A1 **and** DSW-A2 (both HSRP peers).
@@ -27,7 +30,8 @@
 | **No `log` keyword (PT limitation)** | PT rejects `log` on ACL entries. Match counters serve the same purpose. |
 | **Explicit `permit ip any any` at end of extended ACL** | Without it, the implicit deny blocks all non-listed traffic — including PC-A1 → PC-B1. |
 
-> [!NOTE] HSRP Active/Standby, not load balancing
+> [!NOTE]
+> **HSRP Active/Standby, not load balancing**
 > In this design DSW-A1 is the Active gateway for all Office A VLANs (priority 110).
 > DSW-A2 is Standby. Traffic is **not** balanced across them. The reason for
 > duplicating the ACL on both switches is **failover** — if DSW-A1 loses Active
@@ -67,11 +71,13 @@ end
 write memory
 ```
 
-> [!WARNING]\n> **<text>** `log` keyword unsupported in Packet Tracer
+> [!WARNING]
+> `log` keyword unsupported in Packet Tracer
 > `access-list 10 deny any log` is rejected with `% Invalid input detected at '^' marker`.
 > Use `access-list 10 deny any`. On real IOS, `log` works and is best practice.
 
-> [!NOTE] Standard ACL placement rule
+> [!NOTE]
+> **Standard ACL placement rule**
 > Standard ACLs match **source only** and are normally placed **close to the destination**
 > because they lack destination information. When applied as a VTY `access-class`, the
 > rule applies implicitly — the destination *is* the device's own VTY subsystem.
@@ -116,7 +122,8 @@ filter entirely.
 | 30 | `deny ip ...` | Block everything else to Office B servers |
 | 40 | `permit ip any any` | Allow all other traffic (VLAN 10, Internet, etc.) |
 
-> [!IMPORTANT]\n> **<text>** Order matters
+> [!IMPORTANT]
+> Order matters
 > The two `permit tcp` lines must come **before** the `deny ip`, and the final
 > `permit ip any any` must come **last**. First match wins.
 
@@ -174,7 +181,8 @@ permit ip any any (324 match(es))
 
 ### 5.4 VTY ACL test
 
-> [!IMPORTANT]\n> **<text>** SSH keys are not yet created at this phase
+> [!IMPORTANT]
+> SSH keys are not yet created at this phase
 > Full SSH configuration (RSA keys, local user `admin`) is completed in **Phase 9**.
 > At Phase 7 you can test the ACL **behavior** with a Telnet attempt (which will
 > also fail because `transport input ssh` is set), or **defer the full SSH test to
@@ -208,7 +216,8 @@ The full "log in successfully from a management host" test requires:
 
 See **Phase 9 §6.5** for the real SSH login test.
 
-> [!WARNING]\n> **<text>** Just changing a PC's IP does not move it to VLAN 99
+> [!WARNING]
+> Just changing a PC's IP does not move it to VLAN 99
 > In earlier drafts, the test said "set PC-A1 to `10.10.99.10/24`". That is
 > insufficient — the PC's access port must be reassigned to VLAN 99 as well:
 > ```cisco
@@ -284,17 +293,21 @@ If counters increment, the ACL is working.
 
 ## 9. Lessons Learned
 
-> [!NOTE] ACL ordering is critical
+> [!NOTE]
+> **ACL ordering is critical**
 > Entries are evaluated top-down. First match wins. A misplaced permit can silently invert the intent.
 
-> [!NOTE] Standard vs. Extended placement
+> [!NOTE]
+> **Standard vs. Extended placement**
 > - **Standard ACLs:** place close to destination.
 > - **Extended ACLs:** place close to source.
 
-> [!NOTE] HSRP + ACL = apply on both peers
+> [!NOTE]
+> **HSRP + ACL = apply on both peers**
 > Any filter that must survive failover has to be on both HSRP switches.
 
-> [!NOTE] Packet Tracer quirks to remember
+> [!NOTE]
+> **Packet Tracer quirks to remember**
 > `log` unsupported; `show ip interface` unreliable for SVI ACLs; deleting and
 > recreating an ACL sometimes silently unbinds it — always reapply.
 

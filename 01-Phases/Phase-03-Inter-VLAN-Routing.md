@@ -52,7 +52,8 @@ ip routing
 exit
 ```
 
-> [!WARNING]\n> **<text>** #1 CCNA mistake
+> [!WARNING]
+> #1 CCNA mistake
 > The 3560 is Layer-3 capable, but **`ip routing` is OFF by default**. Without it, the switch will not route between VLANs even with SVIs configured.
 
 ### Verify
@@ -129,7 +130,8 @@ interface Vlan99
  exit
 ```
 
-> [!tip] Why preempt on both switches?
+> [!TIP]
+> **Why preempt on both switches?**
 > Without `preempt`, a switch that comes up after a reboot never reclaims its primary role. With preempt, DSW-A1 reclaims Active whenever it comes back online. Priority (110 vs. 100) determines the winner.
 
 ---
@@ -225,7 +227,8 @@ interface FastEthernet0/4
  exit
 ```
 
-> [!note] No HSRP on VLAN 300 yet
+> [!NOTE]
+> **No HSRP on VLAN 300 yet**
 > DSW-A2's SVI for VLAN 300 will be added in Phase 5 once the DSW↔DSW EtherChannel is up.
 
 ---
@@ -257,7 +260,8 @@ DHCP comes in Phase 8. For now, configure statically.
 | PC-B2 | 10.20.10.11 | 255.255.255.0 | 10.20.10.1 |
 | SRV1  | 10.30.0.10 | 255.255.255.0 | 10.30.0.1 |
 
-> [!IMPORTANT]\n> **<text>** Gateway = HSRP VIP, not physical SVI
+> [!IMPORTANT]
+> Gateway = HSRP VIP, not physical SVI
 > Every PC's gateway must be the **virtual IP (`.1`)**, not `.2` or `.3`. This is the entire point of HSRP.
 
 ---
@@ -372,7 +376,8 @@ show interfaces FastEthernet0/1 switchport
 Expected: Administrative Mode: static access, Access Mode VLAN: 10.
 
 ### Lesson Learned
-> [!WARNING]\n> **<text>** Bulk `interface range` commands must be scoped carefully
+> [!WARNING]
+> Bulk `interface range` commands must be scoped carefully
 > `interface range GigabitEthernet0/1 - 2` (uplinks) and `interface range FastEthernet0/1 - 10` (hosts) look similar. Always double-check the port range before pressing Enter.
 
 ---
@@ -392,7 +397,7 @@ Expected: Administrative Mode: static access, Access Mode VLAN: 10.
 
 ## 14. Next Phase
 
-➡️ **[Phase 4 — Rapid PVST+ Tuning](Phase-4-Rapid-PVST-Tuning.md)**
+➡️ **[Phase 4 — Rapid PVST+ Tuning](Phase-04-Rapid-PVST-Tuning.md)**
 
 In Phase 4 we will:
 - Set STP mode to Rapid PVST+ on all switches

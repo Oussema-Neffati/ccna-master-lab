@@ -1,10 +1,12 @@
 # Phase 1 — Physical Topology & Cabling
 
-> [!NOTE]\n> **Prerequisites & Navigation**
+> [!NOTE]
+> **Prerequisites & Navigation**
 > **Previous:** (start of project) · **Next:** [Phase 2 — VLANs & 802.1Q Trunks](Phase-02-VLANs-and-Trunks.md)
 > Master addressing plan: [MASTER-ADDRESSING.md](../MASTER-ADDRESSING.md)
 
-> > [!TIP]\n> **Phase Objective**
+> [!TIP]
+> **Phase Objective**
 > Place all devices, cable the topology, and verify Layer 1 / Layer 2 link status — **without any configuration**.
 
 ---
@@ -19,7 +21,8 @@
 | **Two physical links per EtherChannel** | Allows LACP to bundle without wasting ports; matches enterprise best practice. |
 | **Intentional Layer 2 loops** | Created on purpose between DSW/ASW pairs so Rapid PVST+ has something to block and demonstrate. |
 
-> [!IMPORTANT]\n> **<text>** What this lab does NOT claim
+> [!IMPORTANT]
+> What this lab does NOT claim
 > Office A is homed only to CSW1, and Office B only to CSW2. Losing CSW1 does not
 > keep Office A reachable — it isolates Office A. What the dual-homed edge **does**
 > provide is uninterrupted Internet reachability for whichever office is still
@@ -59,7 +62,8 @@
 
 **Total devices: 17**
 
-> [!NOTE] SRV1's actual services
+> [!NOTE]
+> **SRV1's actual services**
 > In this lab, **R1** provides DHCP and NTP. SRV1 provides DNS, Syslog, and HTTP.
 > Packet Tracer's Server-PT does not expose an SNMP agent, so SRV1 cannot be an
 > SNMP trap receiver — that is a PT limitation, noted in Phase 9.
@@ -68,7 +72,7 @@
 
 ## 3. Physical Topology
 
-![Physical-topology](/02-Diagrams/Physical-topology-v2.png)
+![Physical-topology](../02-Diagrams/Physical-topology-v2.png)
 
 
 ### 3.2 Physical Cabling Overview
@@ -113,7 +117,8 @@ All cables are **Copper Straight-Through**. Packet Tracer handles MDI/MDI-X auto
 | 8 | CSW2 | Fa0/3 | DSW-B1 | Gi0/1 | 10.0.3.0/30 | Core ↔ Dist B1 |
 | 9 | CSW2 | Fa0/4 | DSW-B2 | Gi0/1 | 10.0.4.0/30 | Core ↔ Dist B2 |
 
-> [!NOTE] Subnet labels corrected
+> [!NOTE]
+> **Subnet labels corrected**
 > Earlier versions of this document mislabeled the CSW1↔CSW2 link as `10.0.0.0/30`
 > and R1↔CSW2 as `10.0.0.0/30`. The correct subnets are **10.0.0.4/30** and
 > **10.0.0.8/30** respectively.
@@ -176,7 +181,8 @@ That file contains:
 - NAT rules
 - Management access policy
 
-> [!NOTE] Phases 1–5 use a partial view of the plan
+> [!NOTE]
+> **Phases 1–5 use a partial view of the plan**
 > Only the transit links needed at each phase are shown in that phase's doc.
 > Phases 6+ add OSPF transit subnets (`10.0.1.0` – `10.0.4.0/30`) and loopbacks
 > (`10.255.255.x/32`). The master file always reflects the current state.
@@ -193,7 +199,8 @@ After cabling, wait ~30 seconds for STP to converge, then verify:
 - **Orange** circles on some links are **expected** — these are STP Alternate/Blocked ports on the intentional Layer 2 loops.
 - **Red** indicates a problem (bad cable, wrong port, or shutdown interface).
 
-> [!CAUTION]\n> **<text>** Do NOT try to "fix" orange ports
+> [!CAUTION]
+> Do NOT try to "fix" orange ports
 > Orange ports prove the Layer 2 loops are being handled correctly by Spanning Tree.
 > They will remain orange until Phase 4 tunes STP priorities and Phase 5 collapses
 > the DSW↔DSW segments into EtherChannels.
@@ -217,16 +224,19 @@ show spanning-tree
 
 ## 7. Lessons Learned & Design Notes
 
-> [!NOTE] Why 3560 for CSW/DSW?
+> [!NOTE]
+> **Why 3560 for CSW/DSW?**
 > The 3560 in Packet Tracer supports SVIs, routed ports, HSRP, and full OSPF. The
 > 2960 does not — it is Layer 2 only.
 
-> [!NOTE] Why dual-homed R1?
+> [!NOTE]
+> **Why dual-homed R1?**
 > A single uplink from R1 to CSW1 would make the whole network dependent on CSW1.
 > Adding a second uplink (R1 Gi0/2 → CSW2 Gi0/1, subnet `10.0.0.8/30`) provides
 > edge redundancy and enables OSPF failover.
 
-> [!TIP] EtherChannel and trunk-to-routed conversion deferred
+> [!TIP]
+> **EtherChannel and trunk-to-routed conversion deferred**
 > The DSW↔DSW and CSW↔CSW parallel links are **plain links** until Phase 5.
 > The CSW↔DSW links are trunks in Phase 2, then converted to **routed ports**
 > in Phase 6.

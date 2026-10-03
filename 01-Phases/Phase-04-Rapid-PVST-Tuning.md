@@ -105,7 +105,8 @@ spanning-tree vlan 300 root primary
 spanning-tree vlan 300 priority 4096
 ```
 
-> [!note] DSW-A2 will become secondary root for VLAN 300 in Phase 5, after the DSW↔DSW EtherChannel is up and the VLAN 300 SVI is added to DSW-A2.
+> [!NOTE]
+> **DSW-A2 will become secondary root for VLAN 300 in Phase 5, after the DSW↔DSW EtherChannel is up and the VLAN 300 SVI is added to DSW-A2.**
 
 ---
 
@@ -126,7 +127,8 @@ show spanning-tree interface FastEthernet0/1 detail | include PortFast
 ```
 Expected: **PortFast: enabled**, **BPDU Guard: enabled**.
 
-> [!WARNING]\n> **<text>** BPDU Guard is destructive by design
+> [!WARNING]
+> BPDU Guard is destructive by design
 > Connecting an unauthorized switch to a PortFast port err-disables it. Recover with `shutdown` / `no shutdown` after removing the rogue device.
 
 ---
@@ -151,7 +153,8 @@ If a rogue switch with a lower bridge ID appears downstream, the DSW's port
 enters **root-inconsistent** state, blocking the BPDU and preserving the
 intended root bridge.
 
-> [!WARNING]\n> **<text>**
+> [!WARNING]
+> **<text>**
 > **Packet Tracer may not model Root Guard faithfully**
 > PT often accepts the command but doesn't enforce the root-inconsistent state.
 > On real IOS it works as described. Verify with
@@ -238,7 +241,7 @@ Should return "No inconsistencies".
 
 ## 10. Next Phase
 
-➡️ **[Phase 5 — EtherChannel (LACP)](Phase-5-EtherChannel.md)**
+➡️ **[Phase 5 — EtherChannel (LACP)](Phase-05-EtherChannel.md)**
 
 In Phase 5 we will:
 - Bundle CSW1↔CSW2 Fa0/1–2 into an **L3 PortChannel**

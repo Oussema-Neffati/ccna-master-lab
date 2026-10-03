@@ -1,17 +1,20 @@
 # Phase 9 — Network Services (NAT, NTP, SNMP, SSH)
 
-> [!NOTE]\n> **Prerequisites & Navigation**
+> [!NOTE]
+> **Prerequisites & Navigation**
 > **Previous:** [Phase 8 — Network Security](Phase-08-Network-Security.md) · **Next:** [Phase 10 — Automation](Phase-10-Automation.md)
 > Master addressing plan: [MASTER-ADDRESSING.md](../MASTER-ADDRESSING.md)
 
-> > [!TIP]\n> **Phase Objective**
+> [!TIP]
+> **Phase Objective**
 > Complete the services layer:
 > 1. **NAT/PAT** on R1 — private networks reach the Internet
 > 2. **NTP** — R1 is master, switches sync to it
 > 3. **SNMPv2c** — community strings on all network devices (PT-supported subset)
 > 4. **SSH** — full hardening on all 11 network devices
 
-> [!IMPORTANT]\n> **<text>** Lab credentials
+> [!IMPORTANT]
+> Lab credentials
 > All passwords in this phase use the placeholder `<LAB_PASSWORD>`.
 > In Packet Tracer, substitute a temporary value such as `LabOnly123!`.
 > **Never use these credentials on real equipment or a public network.**
@@ -44,7 +47,8 @@ SRV1 provides DNS, Syslog, and HTTP.
 | **SNMP** | **Not supported** in PT Server-PT (see §10.1) |
 | **NTP** | GUI too limited in PT (see §10.3) |
 
-> [!WARNING]\n> **<text>** PT Server-PT limitations
+> [!WARNING]
+> PT Server-PT limitations
 > - **SNMP service is missing** from the Services tab in most PT builds.
 > - **NTP service** only exposes Key / Password / Calendar fields — no server address field.
 >
@@ -76,7 +80,8 @@ interface GigabitEthernet0/1
  exit
 ```
 
-> [!IMPORTANT]\n> **<text>** Both internal uplinks are `inside`
+> [!IMPORTANT]
+> Both internal uplinks are `inside`
 > R1 has two paths into the enterprise (Gi0/0 → CSW1, Gi0/2 → CSW2). Both must be
 > `ip nat inside`. Only Gi0/1 (to ISP) is `ip nat outside`.
 
@@ -92,7 +97,8 @@ end
 write memory
 ```
 
-> [!CAUTION]\n> **<text>** The wildcard `0.255.255.255` is critical
+> [!CAUTION]
+> The wildcard `0.255.255.255` is critical
 > A common mistake is typing `0.0.255.255` (which matches only `10.0.x.x`).
 > The correct wildcard for "anything starting with 10" is `0.255.255.255`.
 > See §10.5 for the troubleshooting story.
@@ -133,7 +139,8 @@ exit
 write memory
 ```
 
-> [!NOTE] `clock update-calendar` not supported in PT
+> [!NOTE]
+> **`clock update-calendar` not supported in PT**
 > On real Cisco IOS, `clock update-calendar` syncs the hardware calendar with the
 > software clock. PT does not support it — skip.
 
@@ -150,7 +157,8 @@ exit
 write memory
 ```
 
-> [!NOTE] SRV1 cannot be NTP-configured in PT
+> [!NOTE]
+> **SRV1 cannot be NTP-configured in PT**
 > PT's Server-PT NTP service does not expose a server address field. Set the
 > Calendar manually to match R1 if you want visual consistency.
 
@@ -165,7 +173,8 @@ show clock
 
 Expected: `Clock is synchronized, stratum 6, reference is 10.255.255.254`.
 
-> [!WARNING]\n> **<text>** NTP sync can take 3–5 minutes in PT
+> [!WARNING]
+> NTP sync can take 3–5 minutes in PT
 > If unsynchronized, verify reachability first (`ping 10.255.255.254`), then wait.
 
 ---
@@ -195,7 +204,8 @@ snmp-server location "Acme Corp - Lab"
 snmp-server contact "netops@acme.local"
 ```
 
-> [!WARNING]\n> **<text>** Packet Tracer SNMP support is minimal
+> [!WARNING]
+> Packet Tracer SNMP support is minimal
 > PT typically accepts only the two `community` commands. The `host`, `enable traps`,
 > `trap-source`, `location`, and `contact` commands are often rejected.
 
@@ -246,7 +256,8 @@ Enter:
 
 Wait 10–30 seconds for the "keys generated" message.
 
-> [!WARNING]\n> **<text>** Packet Tracer requires interactive key generation
+> [!WARNING]
+> Packet Tracer requires interactive key generation
 > `crypto key generate rsa modulus 2048` is rejected in PT — the modulus must be
 > supplied via the prompt. On 2960 switches, if 2048 fails, retry with `1024`.
 
@@ -272,7 +283,8 @@ end
 write memory
 ```
 
-> [!NOTE] ACL 10 was applied in Phase 7
+> [!NOTE]
+> **ACL 10 was applied in Phase 7**
 > `access-class 10 in` is preserved. Do not remove it.
 
 ### 6.4 Verify
@@ -308,7 +320,8 @@ Expected: connection refused / timed out. ❌
 
 This confirms both SSH hardening AND Phase 7 ACL work end-to-end.
 
-> [!WARNING]\n> **<text>** SSH test ordering note
+> [!WARNING]
+> SSH test ordering note
 > Earlier phases reference testing SSH at Phase 7 — that test was **deferred** to
 > this phase because RSA keys and the local user don't exist until now.
 
@@ -407,7 +420,8 @@ access-list 1 remark === NAT: all internal 10/8 networks ===
 access-list 1 permit 10.0.0.0 0.255.255.255
 ```
 
-> [!CAUTION]\n> **<text>** Wildcard math — the classic CCNA trap
+> [!CAUTION]
+> Wildcard math — the classic CCNA trap
 > `0.255.255.255` = first octet `10`, others don't care → matches every `10.x.x.x`.
 > `0.0.255.255` = first two octets `10.0` → matches only `10.0.x.x`.
 > One misplaced digit silently breaks NAT for the whole network.

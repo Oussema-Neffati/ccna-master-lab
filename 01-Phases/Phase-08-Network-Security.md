@@ -1,16 +1,19 @@
 # Phase 8 — Network Security (Port Security, DHCP Snooping, DAI)
 
-> [!NOTE]\n> **Prerequisites & Navigation**
+> [!NOTE]
+> **Prerequisites & Navigation**
 > **Previous:** [Phase 7 — ACLs](Phase-07-ACLs.md) · **Next:** [Phase 9 — Services](Phase-09-Services.md)
 > Master addressing plan: [MASTER-ADDRESSING.md](../MASTER-ADDRESSING.md)
 
-> > [!TIP]\n> **Phase Objective**
+> [!TIP]
+> **Phase Objective**
 > Harden the access layer against three classic Layer 2 attacks:
 > 1. **MAC flooding / rogue devices** → Port Security
 > 2. **Rogue DHCP servers** → DHCP Snooping
 > 3. **ARP spoofing / MITM** → Dynamic ARP Inspection
 
-> [!CAUTION]\n> **<text>** Order matters
+> [!CAUTION]
+> Order matters
 > DAI relies on the DHCP Snooping binding table. If DAI is enabled before DHCP is
 > working, **every ARP packet gets dropped** and the office goes dark.
 > DHCP → verify → DHCP Snooping → verify → DAI.
@@ -52,14 +55,16 @@ end
 write memory
 ```
 
-> [!WARNING]\n> **<text>** Packet Tracer limitation — `aging type inactivity`
+> [!WARNING]
+> Packet Tracer limitation — `aging type inactivity`
 > `switchport port-security aging type inactivity` is **rejected** by PT's 2960
 > emulation. The command is valid Cisco IOS and preferred in production (ages
 > only silent MACs). PT accepts only `absolute` (the default).
 >
 > **Workaround:** Skip in PT. Note the intent in documentation. Apply on real gear.
 
-> [!WARNING]\n> **<text>** Sticky MACs must be saved
+> [!WARNING]
+> Sticky MACs must be saved
 > `switchport port-security mac-address sticky` stores learned MACs in the
 > **running config** only. Always run `write memory` — otherwise reload wipes them.
 
@@ -141,7 +146,8 @@ end
 write memory
 ```
 
-> [!TIP] Default gateway = HSRP VIP
+> [!TIP]
+> **Default gateway = HSRP VIP**
 > All `default-router` values are HSRP virtual IPs (`.1`). Hosts automatically
 > get a redundant gateway — no host-side change on HSRP failover.
 
@@ -172,7 +178,8 @@ interface Vlan99
  exit
 ```
 
-> [!TIP] Why the loopback?
+> [!TIP]
+> **Why the loopback?**
 > R1's loopback (`10.255.255.254`) is always up, regardless of which physical
 > uplink fails. This makes the helper address robust.
 
@@ -224,7 +231,8 @@ end
 write memory
 ```
 
-> [!IMPORTANT]\n> **<text>** `no ip dhcp snooping information option`
+> [!IMPORTANT]
+> `no ip dhcp snooping information option`
 > Option 82 inserts relay info into DHCP packets. In PT this often breaks DHCP.
 > Standard workaround for labs.
 
@@ -264,12 +272,14 @@ end
 write memory
 ```
 
-> [!WARNING]\n> **<text>** DAI needs the binding table
+> [!WARNING]
+> DAI needs the binding table
 > If DAI is enabled before DHCP Snooping populates the binding table, **every ARP
 > gets dropped** and hosts lose connectivity. Always verify
 > `show ip dhcp snooping binding` is populated first.
 
-> [!NOTE] What `validate ip` actually checks
+> [!NOTE]
+> **What `validate ip` actually checks**
 > `ip arp inspection validate ip` checks for **invalid sender/target IP addresses**
 > in the ARP packet — specifically `0.0.0.0`, `255.255.255.255`, and multicast
 > addresses. It does **not** consult the DHCP Snooping binding table.
@@ -352,7 +362,8 @@ interface FastEthernet0/1
  exit
 ```
 
-> [!TIP] Strongest verification of Port Security
+> [!TIP]
+> **Strongest verification of Port Security**
 > The hub method proves the feature end-to-end, not just that it's configured.
 
 ---
@@ -374,16 +385,20 @@ interface FastEthernet0/1
 
 ## 11. Lessons Learned
 
-> [!NOTE] Enable security features in the right order
+> [!NOTE]
+> **Enable security features in the right order**
 > DHCP → DHCP Snooping → DAI.
 
-> [!NOTE] Trust boundaries are the key concept
+> [!NOTE]
+> **Trust boundaries are the key concept**
 > Uplinks toward servers are trusted. Host-facing ports are untrusted.
 
-> [!NOTE] Test features, don't just configure them
+> [!NOTE]
+> **Test features, don't just configure them**
 > The hub method for Port Security is the gold standard.
 
-> [!NOTE] Packet Tracer quirks accumulate
+> [!NOTE]
+> **Packet Tracer quirks accumulate**
 > By Phase 8 we've hit: `ip ospf network point-to-point`,
 > `no passive-interface Port-channel1`, `log` on ACLs, `aging type inactivity`,
 > `show ip interface` on SVIs.

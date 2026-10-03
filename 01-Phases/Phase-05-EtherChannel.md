@@ -50,7 +50,8 @@ updated: 2026-09-22
 | Po1 | DSW-A1 ↔ DSW-A2 | **L2 (trunk)** | Fa0/2–3 | Office A VLANs + VLAN 300 |
 | Po1 | DSW-B1 ↔ DSW-B2 | **L2 (trunk)** | Fa0/2–3 | Office B VLANs |
 
-> [!note] Same PortChannel number (1) on every switch
+> [!NOTE]
+> **Same PortChannel number (1) on every switch**
 > That's fine — PortChannel numbers are **locally significant**, not global. Each switch's Po1 refers to its own local bundle.
 
 ---
@@ -87,7 +88,8 @@ interface Port-channel1
  exit
 ```
 
-> [!WARNING]\n> **<text>** Packet Tracer limitation — `ip ospf network point-to-point`
+> [!WARNING]
+> Packet Tracer limitation — `ip ospf network point-to-point`
 > On real Cisco IOS, adding `ip ospf network point-to-point` on this PortChannel is standard practice — it skips DR/BDR election between two directly connected routers. **Packet Tracer rejects this command on Gigabit Ethernet interfaces** (it only accepts it on Loopback). Since this is a two-device segment, the DR/BDR election is harmless. **Skip the command in the lab.** On real gear, always apply it.
 
 **Verify:**
@@ -133,7 +135,8 @@ interface Port-channel1
  exit
 ```
 
-> [!tip] Order of operations
+> [!TIP]
+> **Order of operations**
 > Apply `channel-group` on the physical ports first, then configure the PortChannel interface. This avoids the "suspended member" state that occurs when the physical port has conflicting config.
 
 ---
@@ -172,7 +175,8 @@ interface Port-channel1
  exit
 ```
 
-> [!note] Office B does not carry VLAN 300
+> [!NOTE]
+> **Office B does not carry VLAN 300**
 > Only Office A hosts the Services VLAN. SRV1 connects to DSW-A1.
 
 ---
@@ -203,10 +207,12 @@ interface Vlan300
  exit
 ```
 
-> [!IMPORTANT]\n> **<text>** Why `standby version 2`?
+> [!IMPORTANT]
+> Why `standby version 2`?
 > HSRPv1 supports group numbers **0–255** only. Because we used group **300** (matching the VLAN ID), the switch requires HSRPv2. Applying `standby version 2` on **both ends** resolves the error. HSRPv1 and HSRPv2 are **not** interoperable on the same group.
 
-> [!IMPORTANT]\n> **<text>** SRV1's gateway does NOT change
+> [!IMPORTANT]
+> SRV1's gateway does NOT change
 > SRV1 still uses `10.30.0.1` as its default gateway — but that address is now a **virtual IP**, not DSW-A1's physical SVI. No host changes required.
 
 **Verify:**
@@ -330,7 +336,8 @@ interface Vlan300
 ```
 Apply `standby version 2` on **both** DSW-A1 and DSW-A2 for that SVI.
 
-> [!WARNING]\n> **<text>** HSRPv1 and HSRPv2 are NOT interoperable
+> [!WARNING]
+> HSRPv1 and HSRPv2 are NOT interoperable
 > Both ends of the same group must use the same version. A version mismatch will keep the HSRP state stuck in `Init`.
 
 ---
@@ -363,20 +370,23 @@ Apply `standby version 2` on **both** DSW-A1 and DSW-A2 for that SVI.
 
 ## 13. Lessons Learned
 
-> [!note] Bulk `channel-group` and `interface range` safety
+> [!NOTE]
+> **Bulk `channel-group` and `interface range` safety**
 > Always apply `channel-group` on the **physical** range first, then configure the **PortChannel** interface separately. Configuring them in the wrong order causes `suspended` member states.
 
-> [!note] HSRP group number ≠ HSRP version
+> [!NOTE]
+> **HSRP group number ≠ HSRP version**
 > Group numbers are just identifiers; version determines the group-ID range and packet format. If your group number is > 255, you must use HSRPv2.
 
-> [!note] Packet Tracer ≠ real IOS
+> [!NOTE]
+> **Packet Tracer ≠ real IOS**
 > Some valid Cisco commands are unsupported in Packet Tracer (like `ip ospf network point-to-point` on Ethernet). In those cases, note the intent, apply it on real gear, and move on in the lab.
 
 ---
 
 ## 14. Next Phase
 
-➡️ **[Phase 6 — OSPFv2 Single Area](Phase-6-OSPFv2.md)**
+➡️ **[Phase 6 — OSPFv2 Single Area](Phase-06-OSPFv2.md)**
 
 In Phase 6 we will:
 - Enable OSPF process 1 on R1, CSW1, CSW2
