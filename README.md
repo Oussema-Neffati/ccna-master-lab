@@ -16,8 +16,8 @@ enterprise with a dual-homed core, edge NAT, and full Layer 2/3 redundancy.
 | 7 | **[Phase 7 — ACLs (Standard & Extended)](01-Phases/Phase-7-ACLs.md)** | ✅ Complete |
 | 8 | **[Phase 8 — Network Security (Port Security, DHCP Snooping, DAI)](01-Phases/Phase-8-Network-Security.md)** | ✅ Complete |
 | 9 | **[Phase 9 — Services (NAT, NTP, SNMP, SSH)](01-Phases/Phase-9-Services.md)** | ✅ Complete |
-| 10 | **[Phase 10 — Basic Automation & Programmability](Phase-10-Automation.md)** | ✅ Complete |
-| 11 | **[Phase 11 — Troubleshooting Scenarios + Final Review](Phase-11-Troubleshooting.md)** | ✅ Complete |
+| 10 | **[Phase 10 — Basic Automation & Programmability](/01-Phases/Phase-10-Automation.md)** | ✅ Complete |
+| 11 | **[Phase 11 — Troubleshooting Scenarios + Final Review](/01-Phases/Phase-11-Troubleshooting.md)** | ✅ Complete |
 
 ## 🛠️ Technologies Covered
 IPv4 / VLSM · VLANs / 802.1Q · Rapid PVST+ · LACP · SVI / HSRP · OSPFv2 ·
