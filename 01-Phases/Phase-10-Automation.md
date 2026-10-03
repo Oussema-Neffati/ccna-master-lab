@@ -166,12 +166,6 @@ curl -k -u admin:<LAB_PASSWORD> \
 
 ## 6. Python Scripts (Reference)
 
-
-Replace with:
-
-```markdown
-## 6. Python Scripts (Reference)
-
 Illustrative RESTCONF examples. These target a real IOS-XE device (CSR1000v,
 ISR 4000, Catalyst 9000) — not Packet Tracer.
 

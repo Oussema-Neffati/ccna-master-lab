@@ -12,7 +12,6 @@
 > a hardened native VLAN. **No IP addressing on SVIs yet — that comes in Phase 3.**
 
 > [!IMPORTANT]
-> **<text>**
 > **Scope Rules**
 > - Configure **switches only**.
 > - Do **not** touch R1, ISP, or the PCs.
@@ -63,7 +62,6 @@ exit
 ```
 
 > [!WARNING]
-> **<text>**
 > **No VTP**
 > Packet Tracer's 2960 and 3560 do not support VTP v3, and this lab deliberately
 > avoids VTP entirely. VLANs must be created on every switch manually.
@@ -174,7 +172,6 @@ interface range GigabitEthernet0/1 - 2
 ```
 
 > [!WARNING]
-> **<text>**
 > **2960 does not accept `encapsulation dot1q`**
 > The 2960 only supports 802.1Q. If you type `switchport trunk encapsulation dot1q`
 > on an ASW, it errors — skip that line on all 2960s.

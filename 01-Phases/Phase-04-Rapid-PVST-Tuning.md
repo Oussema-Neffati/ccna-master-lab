@@ -106,7 +106,8 @@ spanning-tree vlan 300 priority 4096
 ```
 
 > [!NOTE]
-> **DSW-A2 will become secondary root for VLAN 300 in Phase 5, after the DSW↔DSW EtherChannel is up and the VLAN 300 SVI is added to DSW-A2.**
+> **DSW-A2 will become secondary root for VLAN 300 in Phase 5, after the DSW↔DSW EtherChannel is up and the VLAN 300 SVI is added to DSW-A2.
+**
 
 ---
 
@@ -154,7 +155,6 @@ enters **root-inconsistent** state, blocking the BPDU and preserving the
 intended root bridge.
 
 > [!WARNING]
-> **<text>**
 > **Packet Tracer may not model Root Guard faithfully**
 > PT often accepts the command but doesn't enforce the root-inconsistent state.
 > On real IOS it works as described. Verify with
@@ -220,7 +220,7 @@ Should return "No inconsistencies".
 - [x] DSW-A2 / DSW-B2 = root secondary (priority 8192)
 - [x] DSW-A1 = root primary for VLAN 300
 - [x] PortFast + BPDU Guard on Fa0/1–23 of all ASWs
-- [x] Root Guard on ASW uplinks (Gi0/1–2)
+- [x] Root Guard on distribution ports facing access (Gi0/1–2)
 - [x] BPDU Guard test err-disabled the test port
 - [x] All switches saved to startup-config
 
