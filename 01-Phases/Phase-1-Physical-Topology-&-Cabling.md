@@ -71,7 +71,7 @@ updated: 2026-09-18
 ## 3. Physical Topology
 
 
-![Physical Topology](../04-Assets/Physical%20Topology.png)
+![Physical Topology](../04-Assets/Physical-topology-v2.png)
 
 
 ---
