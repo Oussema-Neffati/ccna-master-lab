@@ -16,13 +16,21 @@ updated: 2026-09-20
 
 # Phase 4 — Rapid PVST+ Tuning
 
-> [!info] Project Context
-> This lab models **Acme Corp**, a two-office enterprise connected through a dual-homed core and a single edge router to a simulated ISP. Each phase builds on the previous one, ending with a fully integrated CCNA lab covering VLANs, STP, EtherChannel, OSPF, ACLs, security hardening, services, and automation.
+> [!NOTE]
+> **Prerequisites & Navigation**
+> **Previous:** [Phase 3 — Inter-VLAN Routing](Phase-03-Inter-VLAN-Routing.md) · **Next:** [Phase 5 — EtherChannel](Phase-05-EtherChannel.md)
+> Master addressing plan: [MASTER-ADDRESSING.md](../MASTER-ADDRESSING.md)
 
-> [!success] Phase Objective
-> Take deterministic control of the Spanning Tree topology so that the STP root bridge matches the HSRP active gateway on every VLAN. Harden access ports with PortFast + BPDU Guard, and protect the root bridge position with Root Guard.
+> [!TIP]
+> **Phase Objective**
+> Take deterministic control of the Spanning Tree topology so that the STP root
+> bridge matches the HSRP active gateway on every VLAN. Harden access ports
+> with PortFast + BPDU Guard, and protect the root bridge position with Root Guard.
 
-> [!important] Scope Rules
+> [!NOTE]
+> **Superseded in Phase 6**
+> The CSW↔DSW ports referenced for STP root bridge placement become routed ports
+> in Phase 6. Root bridge tuning remains on the DSW↔ASW trunks.
 > - Configure **switches only**.
 > - Do **not** touch R1, ISP, or the PCs.
 > - EtherChannel is still deferred to Phase 5.
@@ -123,17 +131,31 @@ Expected: **PortFast: enabled**, **BPDU Guard: enabled**.
 
 ---
 
-## 5. Root Guard (ASW Uplinks)
+## 5. Root Guard (Distribution Ports Facing Access)
 
-On **ASW-A1, ASW-A2, ASW-B1, ASW-B2**:
+Root Guard is applied on the **distribution switches' ports facing the access
+layer** — the ports that should never become the STP root port.
+
+### On DSW-A1, DSW-A2, DSW-B1, DSW-B2 (ports toward ASWs only)
 
 ```cisco
-interface range GigabitEthernet0/1 - 2
+! On DSW-A1
+interface range GigabitEthernet0/2, FastEthernet0/1
  spanning-tree guard root
  exit
+
+! Repeat on DSW-A2, DSW-B1, DSW-B2
 ```
 
-This causes an uplink to enter **root-inconsistent** state if it receives a superior BPDU, preventing a rogue switch from becoming root.
+If a rogue switch with a lower bridge ID appears downstream, the DSW's port
+enters **root-inconsistent** state, blocking the BPDU and preserving the
+intended root bridge.
+
+> [!WARNING]
+> **Packet Tracer may not model Root Guard faithfully**
+> PT often accepts the command but doesn't enforce the root-inconsistent state.
+> On real IOS it works as described. Verify with
+> `show spanning-tree inconsistentports`.
 
 ---
 

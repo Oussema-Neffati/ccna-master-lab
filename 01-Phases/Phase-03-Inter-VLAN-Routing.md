@@ -17,18 +17,16 @@ updated: 2026-09-20
 
 # Phase 3 — Inter-VLAN Routing (SVIs + HSRP)
 
-> [!info] Project Context
-> This lab models **Acme Corp**, a two-office enterprise connected through a dual-homed core and a single edge router to a simulated ISP. Each phase builds on the previous one, ending with a fully integrated CCNA lab covering VLANs, STP, EtherChannel, OSPF, ACLs, security hardening, services, and automation.
+> [!NOTE]
+> **Prerequisites & Navigation**
+> **Previous:** [Phase 2 — VLANs & Trunks](Phase-02-VLANs-and-Trunks.md) · **Next:** [Phase 4 — Rapid PVST+ Tuning](Phase-04-Rapid-PVST-Tuning.md)
+> Master addressing plan: [MASTER-ADDRESSING.md](../MASTER-ADDRESSING.md)
 
-> [!success] Phase Objective
-> Turn the distribution switches into Layer-3 gateways using SVIs, provide redundant first-hop gateways with HSRP, and verify inter-VLAN routing works within each office.
-
-> [!important] Scope Rules
-> - Configure **DSWs and endpoint hosts only**.
-> - Do **not** touch R1, CSW1, CSW2, or the ASWs.
-> - EtherChannel still deferred to Phase 5.
-
----
+> [!TIP]
+> **Phase Objective**
+> Turn the distribution switches into Layer-3 gateways using SVIs, provide
+> redundant first-hop gateways with HSRP, and verify inter-VLAN routing works
+> within each office.
 
 ## 1. Design Decisions
 

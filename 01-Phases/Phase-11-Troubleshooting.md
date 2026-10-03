@@ -1,10 +1,10 @@
 # Phase 11 — Troubleshooting Scenarios + Final Review
 
-> [!NOTE] Prerequisites & Navigation
+> [!NOTE]\n> **Prerequisites & Navigation**
 > **Previous:** [Phase 10 — Automation](Phase-10-Automation.md) · **Next:** (end of project)
 > Master addressing plan: [MASTER-ADDRESSING.md](../MASTER-ADDRESSING.md) · Final device summary: [FINAL-DEVICE-SUMMARY.md](../FINAL-DEVICE-SUMMARY.md)
 
-> [!TIP] Phase Objective
+> > [!TIP]\n> **Phase Objective**
 > Prove diagnostic skill — inject misconfigurations, observe symptoms, diagnose,
 > fix, verify. This is the exam-critical skill: not "can you configure it" but
 > "can you find what's broken."

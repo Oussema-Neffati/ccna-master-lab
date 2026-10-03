@@ -1,10 +1,10 @@
 # Phase 9 — Network Services (NAT, NTP, SNMP, SSH)
 
-> [!NOTE] Prerequisites & Navigation
+> [!NOTE]\n> **Prerequisites & Navigation**
 > **Previous:** [Phase 8 — Network Security](Phase-08-Network-Security.md) · **Next:** [Phase 10 — Automation](Phase-10-Automation.md)
 > Master addressing plan: [MASTER-ADDRESSING.md](../MASTER-ADDRESSING.md)
 
-> [!TIP] Phase Objective
+> > [!TIP]\n> **Phase Objective**
 > Complete the services layer:
 > 1. **NAT/PAT** on R1 — private networks reach the Internet
 > 2. **NTP** — R1 is master, switches sync to it

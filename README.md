@@ -25,9 +25,7 @@ The lab is split into 11 phases that build on each other — follow them in orde
 ## Topology
 
 
-![Physical-topology](02-Diagrams\Physical-topology-v2.png)
-
----
+![Topology](02-Diagrams/Physical-topology-v2.png)---
 
 ## Phases
 
@@ -52,6 +50,14 @@ The lab is split into 11 phases that build on each other — follow them in orde
 Full IPv4 / VLSM plan, transit subnets, loopbacks, and HSRP table:
 
 ➡️ **[MASTER-ADDRESSING.md](MASTER-ADDRESSING.md)**
+
+---
+
+## Final Device Summary
+
+One-page reference — all devices, roles, loopbacks, and key IPs:
+
+➡️ **[FINAL-DEVICE-SUMMARY.md](FINAL-DEVICE-SUMMARY.md)**
 
 ---
 
@@ -119,21 +125,23 @@ verification, common pitfalls), but relies on the output of earlier phases.
 
 ## Repository Structure
 
+
 ```
 ccna-master-lab/
 ├── README.md
 ├── MASTER-ADDRESSING.md
+├── FINAL-DEVICE-SUMMARY.md
 ├── .gitignore
+├── LICENSE
 ├── 01-Phases/               # 11 phase documents
-├── 02-Diagrams/             # topology images
+└── 02-Diagrams/             # topology images
 ```
-
 ---
 
 ## Known Limitations
 
 12 Packet Tracer limitations are documented across the phases. A consolidated list
-is at the end of [Phase 11](01-Phases/Phase-11-Troubleshooting.md#packet-tracer-limitations).
+is at the end of [Phase 11](01-Phases/Phase-11-Troubleshooting.md#packet-tracer-limitations-consolidated).
 
 Every command listed in the phases is valid Cisco IOS syntax. Where PT rejects it,
 the doc notes the limitation and provides the workaround.

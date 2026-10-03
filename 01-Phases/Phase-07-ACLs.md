@@ -1,10 +1,10 @@
 # Phase 7 — Access Control Lists (Standard & Extended)
 
-> [!NOTE] Prerequisites & Navigation
+> [!NOTE]\n> **Prerequisites & Navigation**
 > **Previous:** [Phase 6 — OSPFv2](Phase-06-OSPFv2.md) · **Next:** [Phase 8 — Network Security](Phase-08-Network-Security.md)
 > Master addressing plan: [MASTER-ADDRESSING.md](../MASTER-ADDRESSING.md)
 
-> [!TIP] Phase Objective
+> > [!TIP]\n> **Phase Objective**
 > Filter traffic at two layers:
 > 1. **Standard ACL** — restrict device management (SSH/VTY) to management subnets.
 > 2. **Extended ACL** — block Office A PCs from reaching Office B servers, except HTTP/HTTPS.

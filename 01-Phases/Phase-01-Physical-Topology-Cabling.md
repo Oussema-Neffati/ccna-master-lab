@@ -1,10 +1,10 @@
 # Phase 1 — Physical Topology & Cabling
 
-> [!NOTE] Prerequisites & Navigation
+> [!NOTE]\n> **Prerequisites & Navigation**
 > **Previous:** (start of project) · **Next:** [Phase 2 — VLANs & 802.1Q Trunks](Phase-02-VLANs-and-Trunks.md)
 > Master addressing plan: [MASTER-ADDRESSING.md](../MASTER-ADDRESSING.md)
 
-> [!TIP] Phase Objective
+> > [!TIP]\n> **Phase Objective**
 > Place all devices, cable the topology, and verify Layer 1 / Layer 2 link status — **without any configuration**.
 
 ---

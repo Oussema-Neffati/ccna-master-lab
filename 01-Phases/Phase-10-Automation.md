@@ -1,10 +1,10 @@
 # Phase 10 — Basic Automation & Programmability
 
-> [!NOTE] Prerequisites & Navigation
+> [!NOTE]\n> **Prerequisites & Navigation**
 > **Previous:** [Phase 9 — Services](Phase-09-Services.md) · **Next:** [Phase 11 — Troubleshooting](Phase-11-Troubleshooting.md)
 > Master addressing plan: [MASTER-ADDRESSING.md](../MASTER-ADDRESSING.md)
 
-> [!TIP] Phase Objective
+> > [!TIP]\n> **Phase Objective**
 > Understand and document the automation concepts tested on the CCNA 200-301 exam:
 > REST APIs, RESTCONF, NETCONF, HTTP verbs, data formats, Python scripting,
 > configuration management tools, and SDN / Cisco Catalyst Center.
@@ -150,7 +150,7 @@ restconf
 RESTCONF listens on **HTTPS port 443**. Test with:
 
 ```bash
-curl -k -u admin:Cisco123! \
+curl -k -u admin:<LAB_PASSWORD> \
   -H "Accept: application/yang-data+json" \
   https://10.0.0.1/restconf/data/ietf-interfaces:interfaces
 ```

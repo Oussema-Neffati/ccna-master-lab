@@ -17,16 +17,16 @@ updated: 2026-09-22
 
 # Phase 5 — EtherChannel (LACP)
 
-> [!info] Project Context
-> This lab models **Acme Corp**, a two-office enterprise connected through a dual-homed core and a single edge router to a simulated ISP. Each phase builds on the previous one, ending with a fully integrated CCNA lab covering VLANs, STP, EtherChannel, OSPF, ACLs, security hardening, services, and automation.
+> [!NOTE]
+> **Prerequisites & Navigation**
+> **Previous:** [Phase 4 — Rapid PVST+ Tuning](Phase-04-Rapid-PVST-Tuning.md) · **Next:** [Phase 6 — OSPFv2](Phase-06-OSPFv2.md)
+> Master addressing plan: [MASTER-ADDRESSING.md](../MASTER-ADDRESSING.md)
 
-> [!success] Phase Objective
-> Bundle parallel physical links into logical EtherChannels using LACP. Eliminate STP-blocked ports on inter-switch links, multiply bandwidth, add link-level redundancy, and extend HSRP to the Services VLAN.
-
-> [!important] Scope Rules
-> - Configure **switches only**.
-> - Do **not** touch R1, ISP, or the PCs.
-> - OSPF is still deferred to Phase 6.
+> [!TIP]
+> **Phase Objective**
+> Bundle parallel physical links into logical EtherChannels using LACP. Eliminate
+> STP-blocked ports on inter-switch links, multiply bandwidth, add link-level
+> redundancy, and extend HSRP to the Services VLAN.
 
 ---
 

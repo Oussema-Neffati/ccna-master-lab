@@ -1,10 +1,10 @@
 # Phase 6 — OSPFv2 Single Area
 
-> [!NOTE] Prerequisites & Navigation
+> [!NOTE]\n> **Prerequisites & Navigation**
 > **Previous:** [Phase 5 — EtherChannel](Phase-05-EtherChannel.md) · **Next:** [Phase 7 — ACLs](Phase-07-ACLs.md)
 > Master addressing plan: [MASTER-ADDRESSING.md](../MASTER-ADDRESSING.md)
 
-> [!TIP] Phase Objective
+> > [!TIP]\n> **Phase Objective**
 > Route between the two offices and toward the Internet using OSPFv2 single-area.
 > This is where PC-A1 finally reaches PC-B1, and where R1 originates a default
 > route into OSPF.

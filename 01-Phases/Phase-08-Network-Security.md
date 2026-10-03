@@ -1,10 +1,10 @@
 # Phase 8 — Network Security (Port Security, DHCP Snooping, DAI)
 
-> [!NOTE] Prerequisites & Navigation
+> [!NOTE]\n> **Prerequisites & Navigation**
 > **Previous:** [Phase 7 — ACLs](Phase-07-ACLs.md) · **Next:** [Phase 9 — Services](Phase-09-Services.md)
 > Master addressing plan: [MASTER-ADDRESSING.md](../MASTER-ADDRESSING.md)
 
-> [!TIP] Phase Objective
+> > [!TIP]\n> **Phase Objective**
 > Harden the access layer against three classic Layer 2 attacks:
 > 1. **MAC flooding / rogue devices** → Port Security
 > 2. **Rogue DHCP servers** → DHCP Snooping
