@@ -52,7 +52,7 @@ ip routing
 exit
 ```
 
-> [!warning] #1 CCNA mistake
+> [!WARNING]\n> **<text>** #1 CCNA mistake
 > The 3560 is Layer-3 capable, but **`ip routing` is OFF by default**. Without it, the switch will not route between VLANs even with SVIs configured.
 
 ### Verify
@@ -245,7 +245,7 @@ interface FastEthernet0/4
 
 ## 9. Endpoint Static IPs (Temporary)
 
-DHCP comes in Phase 9. For now, configure statically.
+DHCP comes in Phase 8. For now, configure statically.
 
 ### PC Settings (Desktop → IP Configuration)
 
@@ -257,7 +257,7 @@ DHCP comes in Phase 9. For now, configure statically.
 | PC-B2 | 10.20.10.11 | 255.255.255.0 | 10.20.10.1 |
 | SRV1  | 10.30.0.10 | 255.255.255.0 | 10.30.0.1 |
 
-> [!important] Gateway = HSRP VIP, not physical SVI
+> [!IMPORTANT]\n> **<text>** Gateway = HSRP VIP, not physical SVI
 > Every PC's gateway must be the **virtual IP (`.1`)**, not `.2` or `.3`. This is the entire point of HSRP.
 
 ---
@@ -372,7 +372,7 @@ show interfaces FastEthernet0/1 switchport
 Expected: Administrative Mode: static access, Access Mode VLAN: 10.
 
 ### Lesson Learned
-> [!warning] Bulk `interface range` commands must be scoped carefully
+> [!WARNING]\n> **<text>** Bulk `interface range` commands must be scoped carefully
 > `interface range GigabitEthernet0/1 - 2` (uplinks) and `interface range FastEthernet0/1 - 10` (hosts) look similar. Always double-check the port range before pressing Enter.
 
 ---

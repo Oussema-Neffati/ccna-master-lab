@@ -9,7 +9,7 @@
 > This is where PC-A1 finally reaches PC-B1, and where R1 originates a default
 > route into OSPF.
 
-> [!IMPORTANT] Architectural change from Phase 2
+> [!IMPORTANT]\n> **<text>** Architectural change from Phase 2
 > The CSW↔DSW uplinks that were Layer 2 trunks in Phase 2 become **routed ports**
 > in this phase. The old `switchport mode trunk` configuration on those four
 > ports is replaced by `no switchport` + IP addressing.
@@ -190,7 +190,7 @@ router ospf 1
  exit
 ```
 
-> [!WARNING] Packet Tracer limitation — `no passive-interface Port-channel1`
+> [!WARNING]\n> **<text>** Packet Tracer limitation — `no passive-interface Port-channel1`
 > PT rejects `no passive-interface Port-channel1` even though the interface exists
 > and is up. With `passive-interface default` still active, Port-channel1 stays
 > passive and the CSW1↔CSW2 adjacency never forms — all inter-core traffic then
@@ -344,7 +344,7 @@ path only:
 O  10.20.10.0/24 [110/3] via 10.0.0.6, ... Port-channel1
 ```
 
-> [!IMPORTANT] OSPF installs only the best path
+> [!IMPORTANT]\n> **<text>** OSPF installs only the best path
 > Earlier drafts of this document showed two entries per Office B subnet (cost 3
 > via Port-channel1 AND cost 4 via R1). That was incorrect. **OSPF installs only
 > the best-cost path** into the routing table. The lower-cost path (via CSW2 over
@@ -422,7 +422,7 @@ traffic hairpins through R1.
 the default state, only the non-transit interfaces (Loopback0, any SVIs) need
 to be explicitly marked passive.
 
-> [!CAUTION] Watch out for inverted logic
+> [!CAUTION]\n> **<text>** Watch out for inverted logic
 > A tempting but **wrong** workaround is to keep `passive-interface default` and
 > mark the transit interfaces passive by mistake. That disables **all** OSPF
 > adjacencies on that switch. The correct approach is: don't use
@@ -457,16 +457,16 @@ point-to-point transit links.
 
 ## 12. Phase 6 Checkpoint
 
-- [ ] ISP configured with Gi0/0 (203.0.113.2/30) and Loopback0 (8.8.8.8/32)
-- [ ] R1 configured with 3 IPs + Loopback0 + static default + OSPF
-- [ ] CSW↔DSW uplinks converted to routed ports
-- [ ] OSPF enabled on R1, CSW1, CSW2, DSW-A1/A2/B1/B2
-- [ ] SVIs and loopbacks passive
-- [ ] `show ip ospf neighbor` shows FULL adjacencies on all transit links
-- [ ] CSW1 ↔ CSW2 adjacency via Port-channel1 (PT workaround applied)
-- [ ] `show ip route` on DSW-A1 shows Office B subnets + default route
-- [ ] **PC-A1 ↔ PC-B1 ping succeeds**
-- [ ] All devices saved
+- [x] ISP configured with Gi0/0 (203.0.113.2/30) and Loopback0 (8.8.8.8/32)
+- [x] R1 configured with 3 IPs + Loopback0 + static default + OSPF
+- [x] CSW↔DSW uplinks converted to routed ports
+- [x] OSPF enabled on R1, CSW1, CSW2, DSW-A1/A2/B1/B2
+- [x] SVIs and loopbacks passive
+- [x] `show ip ospf neighbor` shows FULL adjacencies on all transit links
+- [x] CSW1 ↔ CSW2 adjacency via Port-channel1 (PT workaround applied)
+- [x] `show ip route` on DSW-A1 shows Office B subnets + default route
+- [x] **PC-A1 ↔ PC-B1 ping succeeds**
+- [x] All devices saved
 
 ---
 

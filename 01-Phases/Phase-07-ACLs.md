@@ -9,7 +9,7 @@
 > 1. **Standard ACL** — restrict device management (SSH/VTY) to management subnets.
 > 2. **Extended ACL** — block Office A PCs from reaching Office B servers, except HTTP/HTTPS.
 
-> [!IMPORTANT] Scope — which devices get which ACL
+> [!IMPORTANT]\n> **<text>** Scope — which devices get which ACL
 > - **Standard ACL 10 (VTY restriction):** R1, CSW1, CSW2, DSW-A1, DSW-A2, DSW-B1, DSW-B2 (7 devices).
 >   ASWs are excluded — they are Layer 2 only, no VTY exposure outside their own VLAN 99 management segment.
 > - **Extended ACL `BLOCK_A_TO_B_SERVERS`:** DSW-A1 **and** DSW-A2 (both HSRP peers).
@@ -67,7 +67,7 @@ end
 write memory
 ```
 
-> [!WARNING] `log` keyword unsupported in Packet Tracer
+> [!WARNING]\n> **<text>** `log` keyword unsupported in Packet Tracer
 > `access-list 10 deny any log` is rejected with `% Invalid input detected at '^' marker`.
 > Use `access-list 10 deny any`. On real IOS, `log` works and is best practice.
 
@@ -116,7 +116,7 @@ filter entirely.
 | 30 | `deny ip ...` | Block everything else to Office B servers |
 | 40 | `permit ip any any` | Allow all other traffic (VLAN 10, Internet, etc.) |
 
-> [!IMPORTANT] Order matters
+> [!IMPORTANT]\n> **<text>** Order matters
 > The two `permit tcp` lines must come **before** the `deny ip`, and the final
 > `permit ip any any` must come **last**. First match wins.
 
@@ -174,7 +174,7 @@ permit ip any any (324 match(es))
 
 ### 5.4 VTY ACL test
 
-> [!IMPORTANT] SSH keys are not yet created at this phase
+> [!IMPORTANT]\n> **<text>** SSH keys are not yet created at this phase
 > Full SSH configuration (RSA keys, local user `admin`) is completed in **Phase 9**.
 > At Phase 7 you can test the ACL **behavior** with a Telnet attempt (which will
 > also fail because `transport input ssh` is set), or **defer the full SSH test to
@@ -208,7 +208,7 @@ The full "log in successfully from a management host" test requires:
 
 See **Phase 9 §6.5** for the real SSH login test.
 
-> [!WARNING] Just changing a PC's IP does not move it to VLAN 99
+> [!WARNING]\n> **<text>** Just changing a PC's IP does not move it to VLAN 99
 > In earlier drafts, the test said "set PC-A1 to `10.10.99.10/24`". That is
 > insufficient — the PC's access port must be reassigned to VLAN 99 as well:
 > ```cisco
@@ -224,15 +224,15 @@ See **Phase 9 §6.5** for the real SSH login test.
 
 ## 6. Phase 7 Checkpoint
 
-- [ ] Standard ACL 10 defined on all **7** network devices
-- [ ] ACL 10 applied to VTY lines with `access-class 10 in`
-- [ ] Extended ACL `BLOCK_A_TO_B_SERVERS` on DSW-A1 **and** DSW-A2
-- [ ] Extended ACL applied inbound on Vlan10 SVI
-- [ ] PC-A1 → PC-B1 (inter-office, VLAN 10) ping **works**
-- [ ] PC-A1 → Office B Server ping **blocked** (deny counter increments)
-- [ ] PC-A1 → Office B Server HTTP/HTTPS **allowed** at TCP layer
-- [ ] Telnet/SSH from PC-A1 to DSW-A1 **denied** at ACL 10
-- [ ] All devices saved to startup-config
+- [x] Standard ACL 10 defined on all **7** network devices
+- [x] ACL 10 applied to VTY lines with `access-class 10 in`
+- [x] Extended ACL `BLOCK_A_TO_B_SERVERS` on DSW-A1 **and** DSW-A2
+- [x] Extended ACL applied inbound on Vlan10 SVI
+- [x] PC-A1 → PC-B1 (inter-office, VLAN 10) ping **works**
+- [x] PC-A1 → Office B Server ping **blocked** (deny counter increments)
+- [x] PC-A1 → Office B Server HTTP/HTTPS **allowed** at TCP layer
+- [x] Telnet/SSH from PC-A1 to DSW-A1 **denied** at ACL 10
+- [x] All devices saved to startup-config
 
 ---
 

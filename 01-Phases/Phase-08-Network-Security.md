@@ -10,7 +10,7 @@
 > 2. **Rogue DHCP servers** → DHCP Snooping
 > 3. **ARP spoofing / MITM** → Dynamic ARP Inspection
 
-> [!CAUTION] Order matters
+> [!CAUTION]\n> **<text>** Order matters
 > DAI relies on the DHCP Snooping binding table. If DAI is enabled before DHCP is
 > working, **every ARP packet gets dropped** and the office goes dark.
 > DHCP → verify → DHCP Snooping → verify → DAI.
@@ -52,14 +52,14 @@ end
 write memory
 ```
 
-> [!WARNING] Packet Tracer limitation — `aging type inactivity`
+> [!WARNING]\n> **<text>** Packet Tracer limitation — `aging type inactivity`
 > `switchport port-security aging type inactivity` is **rejected** by PT's 2960
 > emulation. The command is valid Cisco IOS and preferred in production (ages
 > only silent MACs). PT accepts only `absolute` (the default).
 >
 > **Workaround:** Skip in PT. Note the intent in documentation. Apply on real gear.
 
-> [!WARNING] Sticky MACs must be saved
+> [!WARNING]\n> **<text>** Sticky MACs must be saved
 > `switchport port-security mac-address sticky` stores learned MACs in the
 > **running config** only. Always run `write memory` — otherwise reload wipes them.
 
@@ -224,7 +224,7 @@ end
 write memory
 ```
 
-> [!IMPORTANT] `no ip dhcp snooping information option`
+> [!IMPORTANT]\n> **<text>** `no ip dhcp snooping information option`
 > Option 82 inserts relay info into DHCP packets. In PT this often breaks DHCP.
 > Standard workaround for labs.
 
@@ -264,7 +264,7 @@ end
 write memory
 ```
 
-> [!WARNING] DAI needs the binding table
+> [!WARNING]\n> **<text>** DAI needs the binding table
 > If DAI is enabled before DHCP Snooping populates the binding table, **every ARP
 > gets dropped** and hosts lose connectivity. Always verify
 > `show ip dhcp snooping binding` is populated first.
@@ -306,23 +306,23 @@ Both should succeed.
 
 ## 8. Phase 8 Checkpoint
 
-- [ ] Port Security on ASWs (`maximum 2`, `sticky`, `violation shutdown`, `aging time 60`)
-- [ ] `aging type inactivity` — **skipped** (PT limitation)
-- [ ] DHCP pools on R1 for all VLANs
-- [ ] `ip helper-address 10.255.255.254` on all DSW SVIs
-- [ ] PCs set to DHCP client — receive IPs
-- [ ] `show ip dhcp binding` on R1 shows leases
-- [ ] DHCP Snooping enabled on all ASWs for VLANs 10,20,30,99
-- [ ] `no ip dhcp snooping information option` applied
-- [ ] ASW uplinks trusted for DHCP snooping
-- [ ] Host ports rate-limited to 10 pps
-- [ ] `show ip dhcp snooping binding` shows entries for all clients
-- [ ] DAI enabled for VLANs 10,20,30,99 on all ASWs
-- [ ] ASW uplinks trusted for DAI
-- [ ] Hosts can ping gateways and remote hosts
-- [ ] Port Security `Secure-up` on all access ports
-- [ ] Hub-based violation test triggered err-disable as expected
-- [ ] All devices saved
+- [x] Port Security on ASWs (`maximum 2`, `sticky`, `violation shutdown`, `aging time 60`)
+- [x] `aging type inactivity` — **skipped** (PT limitation)
+- [x] DHCP pools on R1 for all VLANs
+- [x] `ip helper-address 10.255.255.254` on all DSW SVIs
+- [x] PCs set to DHCP client — receive IPs
+- [x] `show ip dhcp binding` on R1 shows leases
+- [x] DHCP Snooping enabled on all ASWs for VLANs 10,20,30,99
+- [x] `no ip dhcp snooping information option` applied
+- [x] ASW uplinks trusted for DHCP snooping
+- [x] Host ports rate-limited to 10 pps
+- [x] `show ip dhcp snooping binding` shows entries for all clients
+- [x] DAI enabled for VLANs 10,20,30,99 on all ASWs
+- [x] ASW uplinks trusted for DAI
+- [x] Hosts can ping gateways and remote hosts
+- [x] Port Security `Secure-up` on all access ports
+- [x] Hub-based violation test triggered err-disable as expected
+- [x] All devices saved
 
 ---
 

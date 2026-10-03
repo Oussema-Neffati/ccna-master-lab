@@ -9,7 +9,7 @@
 > REST APIs, RESTCONF, NETCONF, HTTP verbs, data formats, Python scripting,
 > configuration management tools, and SDN / Cisco Catalyst Center.
 
-> [!WARNING] Packet Tracer has no automation support
+> [!WARNING]\n> **<text>** Packet Tracer has no automation support
 > PT rejects `ip http server`, `ip http secure-server`, `ip http authentication local`,
 > and `restconf`. This phase is **documented, not implemented**.
 
@@ -119,7 +119,7 @@
 | **Chef** | Ruby DSL | ✅ Agent | Pull |
 | **SaltStack** | YAML | Optional | Push |
 
-> [!IMPORTANT] Ansible is agentless
+> [!IMPORTANT]\n> **<text>** Ansible is agentless
 > Ansible uses SSH only. Puppet and Chef require an agent on each device.
 
 ---
@@ -135,7 +135,7 @@ restconf
 
 **PT behavior:** All commands rejected.
 
-> [!WARNING] Hard PT limitation
+> [!WARNING]\n> **<text>** Hard PT limitation
 > Unlike other PT quirks, automation is **completely unsupported**. There is no workaround in PT.
 
 ### On real IOS-XE
@@ -256,16 +256,16 @@ Our lab builds the **underlay**. Catalyst Center / SD-Access would build the ove
 
 ## 9. Phase 10 Checkpoint
 
-- [ ] Understand traditional vs. controller-based networking
-- [ ] Know HTTP verbs and status codes
-- [ ] Understand RESTCONF vs. NETCONF
-- [ ] Know JSON, XML, YAML differences
-- [ ] Know Ansible (agentless) vs. Puppet/Chef (agent-based)
-- [ ] Understand Catalyst Center northbound/southbound
-- [ ] Attempted automation commands on R1 (PT rejected all)
-- [ ] Reviewed Python scripts in `scripts/`
-- [ ] Reviewed Ansible playbook in `scripts/ansible/`
-- [ ] Understand real automation requires CML / DevNet Sandbox / real gear
+- [x] Understand traditional vs. controller-based networking
+- [x] Know HTTP verbs and status codes
+- [x] Understand RESTCONF vs. NETCONF
+- [x] Know JSON, XML, YAML differences
+- [x] Know Ansible (agentless) vs. Puppet/Chef (agent-based)
+- [x] Understand Catalyst Center northbound/southbound
+- [x] Attempted automation commands on R1 (PT rejected all)
+- [x] Reviewed Python scripts in `scripts/`
+- [x] Reviewed Ansible playbook in `scripts/ansible/`
+- [x] Understand real automation requires CML / DevNet Sandbox / real gear
 
 ---
 

@@ -19,7 +19,7 @@
 | **Two physical links per EtherChannel** | Allows LACP to bundle without wasting ports; matches enterprise best practice. |
 | **Intentional Layer 2 loops** | Created on purpose between DSW/ASW pairs so Rapid PVST+ has something to block and demonstrate. |
 
-> [!IMPORTANT] What this lab does NOT claim
+> [!IMPORTANT]\n> **<text>** What this lab does NOT claim
 > Office A is homed only to CSW1, and Office B only to CSW2. Losing CSW1 does not
 > keep Office A reachable — it isolates Office A. What the dual-homed edge **does**
 > provide is uninterrupted Internet reachability for whichever office is still
@@ -193,7 +193,7 @@ After cabling, wait ~30 seconds for STP to converge, then verify:
 - **Orange** circles on some links are **expected** — these are STP Alternate/Blocked ports on the intentional Layer 2 loops.
 - **Red** indicates a problem (bad cable, wrong port, or shutdown interface).
 
-> [!CAUTION] Do NOT try to "fix" orange ports
+> [!CAUTION]\n> **<text>** Do NOT try to "fix" orange ports
 > Orange ports prove the Layer 2 loops are being handled correctly by Spanning Tree.
 > They will remain orange until Phase 4 tunes STP priorities and Phase 5 collapses
 > the DSW↔DSW segments into EtherChannels.
@@ -235,11 +235,11 @@ show spanning-tree
 
 ## 8. Phase 1 Checkpoint
 
-- [ ] 17 devices placed and renamed
-- [ ] 26 cables connected with green/orange link lights
-- [ ] `show spanning-tree` on ASW-A1 shows a blocked port
-- [ ] R1 dual-homed to CSW1 and CSW2
-- [ ] No configuration entered on any device yet
+- [x] 17 devices placed and renamed
+- [x] 26 cables connected with green/orange link lights
+- [x] `show spanning-tree` on ASW-A1 shows a blocked port
+- [x] R1 dual-homed to CSW1 and CSW2
+- [x] No configuration entered on any device yet
 
 ---
 

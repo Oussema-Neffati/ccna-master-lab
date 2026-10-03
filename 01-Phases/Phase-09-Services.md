@@ -11,7 +11,7 @@
 > 3. **SNMPv2c** — community strings on all network devices (PT-supported subset)
 > 4. **SSH** — full hardening on all 11 network devices
 
-> [!IMPORTANT] Lab credentials
+> [!IMPORTANT]\n> **<text>** Lab credentials
 > All passwords in this phase use the placeholder `<LAB_PASSWORD>`.
 > In Packet Tracer, substitute a temporary value such as `LabOnly123!`.
 > **Never use these credentials on real equipment or a public network.**
@@ -44,7 +44,7 @@ SRV1 provides DNS, Syslog, and HTTP.
 | **SNMP** | **Not supported** in PT Server-PT (see §10.1) |
 | **NTP** | GUI too limited in PT (see §10.3) |
 
-> [!WARNING] PT Server-PT limitations
+> [!WARNING]\n> **<text>** PT Server-PT limitations
 > - **SNMP service is missing** from the Services tab in most PT builds.
 > - **NTP service** only exposes Key / Password / Calendar fields — no server address field.
 >
@@ -76,7 +76,7 @@ interface GigabitEthernet0/1
  exit
 ```
 
-> [!IMPORTANT] Both internal uplinks are `inside`
+> [!IMPORTANT]\n> **<text>** Both internal uplinks are `inside`
 > R1 has two paths into the enterprise (Gi0/0 → CSW1, Gi0/2 → CSW2). Both must be
 > `ip nat inside`. Only Gi0/1 (to ISP) is `ip nat outside`.
 
@@ -92,7 +92,7 @@ end
 write memory
 ```
 
-> [!CAUTION] The wildcard `0.255.255.255` is critical
+> [!CAUTION]\n> **<text>** The wildcard `0.255.255.255` is critical
 > A common mistake is typing `0.0.255.255` (which matches only `10.0.x.x`).
 > The correct wildcard for "anything starting with 10" is `0.255.255.255`.
 > See §10.5 for the troubleshooting story.
@@ -165,7 +165,7 @@ show clock
 
 Expected: `Clock is synchronized, stratum 6, reference is 10.255.255.254`.
 
-> [!WARNING] NTP sync can take 3–5 minutes in PT
+> [!WARNING]\n> **<text>** NTP sync can take 3–5 minutes in PT
 > If unsynchronized, verify reachability first (`ping 10.255.255.254`), then wait.
 
 ---
@@ -195,7 +195,7 @@ snmp-server location "Acme Corp - Lab"
 snmp-server contact "netops@acme.local"
 ```
 
-> [!WARNING] Packet Tracer SNMP support is minimal
+> [!WARNING]\n> **<text>** Packet Tracer SNMP support is minimal
 > PT typically accepts only the two `community` commands. The `host`, `enable traps`,
 > `trap-source`, `location`, and `contact` commands are often rejected.
 
@@ -246,7 +246,7 @@ Enter:
 
 Wait 10–30 seconds for the "keys generated" message.
 
-> [!WARNING] Packet Tracer requires interactive key generation
+> [!WARNING]\n> **<text>** Packet Tracer requires interactive key generation
 > `crypto key generate rsa modulus 2048` is rejected in PT — the modulus must be
 > supplied via the prompt. On 2960 switches, if 2048 fails, retry with `1024`.
 
@@ -308,7 +308,7 @@ Expected: connection refused / timed out. ❌
 
 This confirms both SSH hardening AND Phase 7 ACL work end-to-end.
 
-> [!WARNING] SSH test ordering note
+> [!WARNING]\n> **<text>** SSH test ordering note
 > Earlier phases reference testing SSH at Phase 7 — that test was **deferred** to
 > this phase because RSA keys and the local user don't exist until now.
 
@@ -353,19 +353,19 @@ write memory
 
 ## 9. Phase 9 Checkpoint
 
-- [ ] SRV1 configured with DNS, Syslog, HTTP
-- [ ] R1: `ip nat inside` on Gi0/0 and Gi0/2, `ip nat outside` on Gi0/1
-- [ ] NAT ACL 1 = `permit 10.0.0.0 0.255.255.255`
-- [ ] `ip nat inside source list 1 interface Gi0/1 overload` applied
-- [ ] PC-A1 and PC-B1 can ping 8.8.8.8
-- [ ] R1 configured as `ntp master 5`
-- [ ] All switches configured with `ntp server 10.255.255.254`
-- [ ] SNMP community strings on all 11 network devices
-- [ ] SSH version 2, RSA keys generated on all 11 devices
-- [ ] `username admin privilege 15 secret <LAB_PASSWORD>` on all devices
-- [ ] VTY uses `login local` + `transport input ssh`
-- [ ] SSH from SRV1 works, from PC-A1 blocked
-- [ ] All devices saved
+- [x] SRV1 configured with DNS, Syslog, HTTP
+- [x] R1: `ip nat inside` on Gi0/0 and Gi0/2, `ip nat outside` on Gi0/1
+- [x] NAT ACL 1 = `permit 10.0.0.0 0.255.255.255`
+- [x] `ip nat inside source list 1 interface Gi0/1 overload` applied
+- [x] PC-A1 and PC-B1 can ping 8.8.8.8
+- [x] R1 configured as `ntp master 5`
+- [x] All switches configured with `ntp server 10.255.255.254`
+- [x] SNMP community strings on all 11 network devices
+- [x] SSH version 2, RSA keys generated on all 11 devices
+- [x] `username admin privilege 15 secret <LAB_PASSWORD>` on all devices
+- [x] VTY uses `login local` + `transport input ssh`
+- [x] SSH from SRV1 works, from PC-A1 blocked
+- [x] All devices saved
 
 ---
 
@@ -407,7 +407,7 @@ access-list 1 remark === NAT: all internal 10/8 networks ===
 access-list 1 permit 10.0.0.0 0.255.255.255
 ```
 
-> [!CAUTION] Wildcard math — the classic CCNA trap
+> [!CAUTION]\n> **<text>** Wildcard math — the classic CCNA trap
 > `0.255.255.255` = first octet `10`, others don't care → matches every `10.x.x.x`.
 > `0.0.255.255` = first two octets `10.0` → matches only `10.0.x.x`.
 > One misplaced digit silently breaks NAT for the whole network.

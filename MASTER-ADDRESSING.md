@@ -87,7 +87,7 @@ point-to-point transit links.
 |------|---------|---------|------|
 | SRV1 | 10.30.0.10/24 | 10.30.0.1 (VIP) | DHCP, DNS, Syslog, HTTP |
 
-All other endpoints use DHCP (Phase 9) and receive the HSRP VIP as their gateway.
+All other endpoints use DHCP (Phase 8) and receive the HSRP VIP as their gateway.
 
 ---
 

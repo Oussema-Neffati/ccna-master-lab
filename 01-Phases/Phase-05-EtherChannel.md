@@ -87,7 +87,7 @@ interface Port-channel1
  exit
 ```
 
-> [!warning] Packet Tracer limitation — `ip ospf network point-to-point`
+> [!WARNING]\n> **<text>** Packet Tracer limitation — `ip ospf network point-to-point`
 > On real Cisco IOS, adding `ip ospf network point-to-point` on this PortChannel is standard practice — it skips DR/BDR election between two directly connected routers. **Packet Tracer rejects this command on Gigabit Ethernet interfaces** (it only accepts it on Loopback). Since this is a two-device segment, the DR/BDR election is harmless. **Skip the command in the lab.** On real gear, always apply it.
 
 **Verify:**
@@ -203,10 +203,10 @@ interface Vlan300
  exit
 ```
 
-> [!important] Why `standby version 2`?
+> [!IMPORTANT]\n> **<text>** Why `standby version 2`?
 > HSRPv1 supports group numbers **0–255** only. Because we used group **300** (matching the VLAN ID), the switch requires HSRPv2. Applying `standby version 2` on **both ends** resolves the error. HSRPv1 and HSRPv2 are **not** interoperable on the same group.
 
-> [!important] SRV1's gateway does NOT change
+> [!IMPORTANT]\n> **<text>** SRV1's gateway does NOT change
 > SRV1 still uses `10.30.0.1` as its default gateway — but that address is now a **virtual IP**, not DSW-A1's physical SVI. No host changes required.
 
 **Verify:**
@@ -330,7 +330,7 @@ interface Vlan300
 ```
 Apply `standby version 2` on **both** DSW-A1 and DSW-A2 for that SVI.
 
-> [!warning] HSRPv1 and HSRPv2 are NOT interoperable
+> [!WARNING]\n> **<text>** HSRPv1 and HSRPv2 are NOT interoperable
 > Both ends of the same group must use the same version. A version mismatch will keep the HSRP state stuck in `Init`.
 
 ---

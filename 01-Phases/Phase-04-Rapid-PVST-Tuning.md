@@ -126,7 +126,7 @@ show spanning-tree interface FastEthernet0/1 detail | include PortFast
 ```
 Expected: **PortFast: enabled**, **BPDU Guard: enabled**.
 
-> [!warning] BPDU Guard is destructive by design
+> [!WARNING]\n> **<text>** BPDU Guard is destructive by design
 > Connecting an unauthorized switch to a PortFast port err-disables it. Recover with `shutdown` / `no shutdown` after removing the rogue device.
 
 ---
@@ -151,7 +151,7 @@ If a rogue switch with a lower bridge ID appears downstream, the DSW's port
 enters **root-inconsistent** state, blocking the BPDU and preserving the
 intended root bridge.
 
-> [!WARNING]
+> [!WARNING]\n> **<text>**
 > **Packet Tracer may not model Root Guard faithfully**
 > PT often accepts the command but doesn't enforce the root-inconsistent state.
 > On real IOS it works as described. Verify with

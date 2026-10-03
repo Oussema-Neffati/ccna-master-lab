@@ -9,7 +9,7 @@
 > fix, verify. This is the exam-critical skill: not "can you configure it" but
 > "can you find what's broken."
 
-> [!WARNING] Save a working snapshot first
+> [!WARNING]\n> **<text>** Save a working snapshot first
 > ```cisco
 > write memory
 > ```
@@ -85,7 +85,7 @@ write memory
 
 PC-A1's traffic goes to the HSRP VIP (10.10.10.1) → DSW-A1 (Active). DSW-A1 has no OSPF route to Office B → traffic dropped. DSW-A1 stays Active because its Vlan10 SVI is still up. DSW-A2 remains Standby and never receives the traffic.
 
-> [!IMPORTANT] HSRP only fails over when a tracked interface goes DOWN
+> [!IMPORTANT]\n> **<text>** HSRP only fails over when a tracked interface goes DOWN
 > Routing failures do not trigger HSRP failover unless explicitly tracked. Use
 > **HSRP object tracking**:
 >
@@ -316,7 +316,7 @@ exit
 
 If Root Guard was missing, add it now:
 
-> [!IMPORTANT] Root Guard placement — on the distribution side
+> [!IMPORTANT]\n> **<text>** Root Guard placement — on the distribution side
 > Root Guard is applied on the **distribution switches' ports facing the access
 > layer** — the ports that should never become the STP root port:
 >
@@ -330,7 +330,7 @@ If Root Guard was missing, add it now:
 > If a rogue switch with a lower bridge ID appears downstream, the DSW's port
 > enters **root-inconsistent** state.
 
-> [!WARNING] Packet Tracer may not model Root Guard faithfully
+> [!WARNING]\n> **<text>** Packet Tracer may not model Root Guard faithfully
 > PT often accepts the command but doesn't enforce the root-inconsistent state.
 > On real IOS it works as described. Verify with `show spanning-tree inconsistentports`.
 
@@ -342,49 +342,49 @@ If Root Guard was missing, add it now:
 
 ### Layer 1 / Layer 2
 
-- [ ] All physical links green/orange (no red)
-- [ ] `show etherchannel summary` on DSW-A1/A2 → `Po1(SU)` with both members `(P)`
-- [ ] `show etherchannel summary` on CSW1/CSW2 → `Po1(RU)` with both members `(P)`
-- [ ] `show interfaces trunk` on DSW-A1 shows Po1, Gi0/2, Fa0/1 (native VLAN 1000)
-- [ ] `show spanning-tree vlan 10` on DSW-A1 → `This bridge is the root`
+- [x] All physical links green/orange (no red)
+- [x] `show etherchannel summary` on DSW-A1/A2 → `Po1(SU)` with both members `(P)`
+- [x] `show etherchannel summary` on CSW1/CSW2 → `Po1(RU)` with both members `(P)`
+- [x] `show interfaces trunk` on DSW-A1 shows Po1, Gi0/2, Fa0/1 (native VLAN 1000)
+- [x] `show spanning-tree vlan 10` on DSW-A1 → `This bridge is the root`
 
 > [!NOTE] `show interfaces trunk` returns empty on CSW1/CSW2
 > All CSW1/CSW2 uplinks are **routed ports** (Phase 6). No trunks exist on the core switches.
 
 ### Layer 3
 
-- [ ] `show ip ospf neighbor` on CSW1 → 4 neighbors, all FULL
-- [ ] `show ip route` on DSW-A1 → Office B subnets + `O*E2 0.0.0.0/0`
-- [ ] `show standby brief` on DSW-A1 → Active for 10,20,30,99,300
-- [ ] `show standby brief` on DSW-A2 → Standby for 10,20,30,99,300
+- [x] `show ip ospf neighbor` on CSW1 → 4 neighbors, all FULL
+- [x] `show ip route` on DSW-A1 → Office B subnets + `O*E2 0.0.0.0/0`
+- [x] `show standby brief` on DSW-A1 → Active for 10,20,30,99,300
+- [x] `show standby brief` on DSW-A2 → Standby for 10,20,30,99,300
 
 ### Connectivity
 
-- [ ] PC-A1 → PC-A2: ✅
-- [ ] PC-A1 → PC-B1: ✅
-- [ ] PC-A1 → SRV1: ✅
-- [ ] PC-A1 → 8.8.8.8: ✅
-- [ ] PC-B1 → 8.8.8.8: ✅
+- [x] PC-A1 → PC-A2: ✅
+- [x] PC-A1 → PC-B1: ✅
+- [x] PC-A1 → SRV1: ✅
+- [x] PC-A1 → 8.8.8.8: ✅
+- [x] PC-B1 → 8.8.8.8: ✅
 
 ### Security
 
-- [ ] `show port-security` → Secure-up on all access ports
-- [ ] `show ip dhcp snooping` → enabled, uplinks trusted
-- [ ] `show ip arp inspection` → enabled for VLANs 10,20,30,99
-- [ ] `show ip access-lists BLOCK_A_TO_B_SERVERS` → 4 entries
-- [ ] `show access-lists 10` → 3 permits + deny
-- [ ] PC-A1 cannot ping Office B server (VLAN 30)
-- [ ] PC-A1 CAN reach Office B server via HTTP/HTTPS
+- [x] `show port-security` → Secure-up on all access ports
+- [x] `show ip dhcp snooping` → enabled, uplinks trusted
+- [x] `show ip arp inspection` → enabled for VLANs 10,20,30,99
+- [x] `show ip access-lists BLOCK_A_TO_B_SERVERS` → 4 entries
+- [x] `show access-lists 10` → 3 permits + deny
+- [x] PC-A1 cannot ping Office B server (VLAN 30)
+- [x] PC-A1 CAN reach Office B server via HTTP/HTTPS
 
 ### Services
 
-- [ ] `show ip nat translations` on R1 → active entries
-- [ ] `show ip dhcp binding` on R1 → leases for all clients
-- [ ] `show ntp status` on CSW1 → synchronized, ref 10.255.255.254
-- [ ] `show snmp community` on any device → ACME-RO (ro)
-- [ ] `show ip ssh` on any device → v2.0
-- [ ] SSH from SRV1 to DSW-A1: ✅
-- [ ] SSH from PC-A1 to DSW-A1: ❌
+- [x] `show ip nat translations` on R1 → active entries
+- [x] `show ip dhcp binding` on R1 → leases for all clients
+- [x] `show ntp status` on CSW1 → synchronized, ref 10.255.255.254
+- [x] `show snmp community` on any device → ACME-RO (ro)
+- [x] `show ip ssh` on any device → v2.0
+- [x] SSH from SRV1 to DSW-A1: ✅
+- [x] SSH from PC-A1 to DSW-A1: ❌
 
 ---
 
@@ -409,10 +409,10 @@ If Root Guard was missing, add it now:
 
 ## Phase 11 Checkpoint
 
-- [ ] All 8 scenarios injected, diagnosed, and fixed
-- [ ] Final review checklist fully passed
-- [ ] Lab returned to a working state
-- [ ] `write memory` on all devices
+- [x] All 8 scenarios injected, diagnosed, and fixed
+- [x] Final review checklist fully passed
+- [x] Lab returned to a working state
+- [x] `write memory` on all devices
 
 ---
 
