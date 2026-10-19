@@ -89,12 +89,12 @@ write memory
 ```
 
 > [!NOTE]
-> **ISP default route**
+> **ISP default route
+**
 > The ISP has a static default route pointing back to R1. This means that once NAT
 > is configured on R1 (Phase 9), inside hosts **can** reach `8.8.8.8` — and
 > interestingly, may also reach `8.8.8.8` **before** Phase 9 if R1's own IP is
 > translated. What they cannot reach without NAT is the public Internet generally.
-> See §10.4 for what was actually observed.
 
 ---
 
@@ -282,7 +282,8 @@ router ospf 1
 ```
 
 > [!NOTE]
-> **DSWs keep `passive-interface default`**
+> **DSWs keep `passive-interface default`
+**
 > DSW uplinks (Gi0/1) are physical interfaces, not Port-channels, so
 > `no passive-interface GigabitEthernet0/1` works fine. Their SVIs remain
 > passive automatically — advertised but no OSPF neighbor on those VLANs.
@@ -391,7 +392,8 @@ Observed result at this phase: **partially working / unreliable.**
   handles the return path. On real hardware it would typically fail without NAT.
 
 > [!NOTE]
-> **Full Internet reachability is completed in Phase 9**
+> **Full Internet reachability is completed in Phase 9
+**
 > Phase 9 adds PAT on R1, at which point every inside host can reach the Internet
 > reliably. Any partial success at this phase is due to PT's simplified ISP
 > emulation, not a real routing behavior.
